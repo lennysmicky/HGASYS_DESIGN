@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Person, Email, Lock, Visibility, VisibilityOff, DirectionsCar, CheckCircleOutline, ErrorOutline, Speed, BuildCircle } from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
 import '../../styles/auth.css';
+import logo from '../../assets/images/logo.png';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -51,7 +52,7 @@ const Register = () => {
           <div className="auth-card">
             <div className="auth-card-header">
               <img
-                src="/logo.png"
+                src={logo}
                 alt="HGASYS"
                 className="auth-card-logo auth-card-logo-mobile"
               />

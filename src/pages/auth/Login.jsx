@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Email, Lock, Visibility, VisibilityOff, DirectionsCar, PeopleOutline, Assessment, Security, CheckCircleOutline, ErrorOutline } from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
 import '../../styles/auth.css';
+import logo from '../../assets/images/logo.png';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -51,7 +52,7 @@ const Login = () => {
         <div className="auth-branding">
           <div className="auth-branding-content">
             <img
-              src="/src/assets/images/logo.png"
+              src={logo}
               alt="HGASYS"
               className="auth-branding-logo"
             />
