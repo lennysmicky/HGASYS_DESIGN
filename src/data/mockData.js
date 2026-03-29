@@ -16,7 +16,7 @@ export const mockUsers = [
     email: 'manager@hgasys.com',
     password: 'manager123',
     role: 'manager',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://fatimakadiri.com/wp-content/uploads/2026/01/Untitled-design-10.png',
     status: 'actif',
     createdAt: '2024-02-10'
   },
@@ -73,7 +73,7 @@ export const mockEmployees = [
     adresse: '45 Boulevard Mohamed V, Oran',
     dateEmbauche: '2021-03-10',
     status: 'actif',
-    photo: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face',
+    photo: 'https://fatimakadiri.com/wp-content/uploads/2026/01/Untitled-design-10.png',
     documents: [
       { name: 'Contrat CDI', type: 'PDF', date: '2021-03-10', size: '250 KB' },
       { name: 'CV', type: 'PDF', date: '2021-02-28', size: '195 KB' }
@@ -176,7 +176,7 @@ export const mockVehicles = [
     carburant: 'Diesel',
     transmission: 'Automatique',
     statut: 'disponible',
-    image: 'https://images.unsplash.com/photo-1633695632721-281dda154c38?w=400&h=250&fit=crop',
+    image: 'https://assets.motorpoint.co.uk/images/content/HyundaiTucsonNLine(3).jpg',
     description: 'Hyundai Tucson dernière génération'
   },
   {
@@ -190,7 +190,7 @@ export const mockVehicles = [
     carburant: 'Diesel',
     transmission: 'Manuelle',
     statut: 'disponible',
-    image: 'https://images.unsplash.com/photo-1606611013016-969c19ba27a5?w=400&h=250&fit=crop',
+    image: 'https://www.auto-infos.fr/mediatheque/4/1/5/000179514_1200x800_c.jpg',
     description: 'Golf 8 en excellent état'
   },
   {
