@@ -44,7 +44,7 @@ const Clients = () => {
 
   const [form, setForm] = useState(emptyForm);
 
-  const formatPrice = (price) => new Intl.NumberFormat('fr-DZ').format(price) + ' DA';
+  const formatPrice = (price) => new Intl.NumberFormat('fr-DZ').format(price) + ' CFA';
 
   // Filtrage
   const filtered = clients.filter((c) => {
