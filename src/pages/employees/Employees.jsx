@@ -54,7 +54,7 @@ const Employees = () => {
     adresse: '',
     dateEmbauche: new Date().toISOString().split('T')[0],
     status: 'actif',
-    photo: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop&crop=face',
+    photo: '',
     documents: [],
   };
 
@@ -266,7 +266,7 @@ const Employees = () => {
       key={emp.id}
       className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-md transition-all group"
     >
-      {/* ❌ SUPPRIMÉ : barre en haut */}
+      {/* SUPPRIMÉ : barre en haut */}
 
       <div className="p-4 relative">
         <div className="flex items-start gap-3">
