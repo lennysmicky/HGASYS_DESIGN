@@ -57,7 +57,7 @@ const Login = () => {
             />
             <h1 className="auth-branding-title">HGASYS</h1>
             <p className="auth-branding-subtitle">
-              Système de Gestion Administrative<br />pour Entreprise Automobile
+              Système de Gestion Administrative<br />
             </p>
 
             <div className="auth-branding-features">
