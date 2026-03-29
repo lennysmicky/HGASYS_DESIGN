@@ -35,6 +35,7 @@ const Login = () => {
     { label: 'Admin', email: 'admin@hgasys.com', password: 'admin123', color: '#d32f2f' },
     { label: 'Manager', email: 'manager@hgasys.com', password: 'manager123', color: '#1976D2' },
     { label: 'Employé', email: 'vendeur@hgasys.com', password: 'vendeur123', color: '#388e3c' },
+    { label: 'Employé', email: 'sara@hgasys.com', password: 'sara123', color: '#388e3c' },
   ];
 
   const fillDemoAccount = (acc) => {
