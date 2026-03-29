@@ -51,7 +51,7 @@ const Register = () => {
           <div className="auth-card">
             <div className="auth-card-header">
               <img
-                src="/public/logo.png"
+                src="/logo.png"
                 alt="HGASYS"
                 className="auth-card-logo auth-card-logo-mobile"
               />
