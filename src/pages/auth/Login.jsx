@@ -95,7 +95,7 @@ const Login = () => {
           <div className="auth-card">
             <div className="auth-card-header">
               <img
-                src="/src/assets/images/logo.png"
+                src={logo}
                 alt="HGASYS"
                 className="auth-card-logo auth-card-logo-mobile"
               />
