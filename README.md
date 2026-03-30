@@ -3,7 +3,7 @@
 
 <img src="src/assets/images/logo.png" alt="HGASYS Logo" width="80" />
 
-# 🚗 HGASYS — Gestion de Système Administratif
+#  HGASYS — Gestion de Système Administratif
 
 ### Application web de gestion administrative complète pour entreprise automobile
 
@@ -13,7 +13,7 @@
 [![MUI Icons](https://img.shields.io/badge/MUI_Icons-5.x-007FFF?style=for-the-badge&logo=mui&logoColor=white)](https://mui.com/)
 [![Netlify](https://img.shields.io/badge/Deployed_on-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://hgasys.netlify.app/)
 
-🌐 **[▶ Voir la Démo en Ligne](https://hgasys.netlify.app/)**
+ **[▶ Voir la Démo en Ligne](https://hgasys.netlify.app/)**
 
 ---
 
@@ -23,7 +23,7 @@
 
 ---
 
-## 📋 Table des matières
+##  Table des matières
 
 - [Présentation](#-présentation)
 - [Fonctionnalités](#-fonctionnalités)
@@ -43,7 +43,7 @@
 
 ---
 
-## 🎯 Présentation
+##  Présentation
 
 **HGASYS** est une application web **mono-page (SPA)** de gestion administrative développée en **React.js**, pensée pour les entreprises du secteur automobile : concessions, garages et importateurs.
 
@@ -51,30 +51,30 @@ Elle centralise la gestion de :
 
 | | Module |
 |---|--------|
-| 👥 | **Utilisateurs** — comptes et rôles d'accès |
-| 🏢 | **Ressources Humaines** — employés, fiches, documents |
-| 🚗 | **Parc Automobile** — véhicules, stock, statuts |
-| 🤝 | **Clients** — fiches clients et historique |
-| 💰 | **Ventes & Paiements** — transactions et suivi |
-| 📊 | **Dashboard** — KPIs et graphiques analytiques |
+|  | **Utilisateurs** — comptes et rôles d'accès |
+|  | **Ressources Humaines** — employés, fiches, documents |
+|  | **Parc Automobile** — véhicules, stock, statuts |
+|  | **Clients** — fiches clients et historique |
+| | **Ventes & Paiements** — transactions et suivi |
+|  | **Dashboard** — KPIs et graphiques analytiques |
 
-> **⚠️ Important :** Ce projet est **100% frontend**. Il n'y a pas de serveur backend. Toutes les données sont simulées via un fichier `mockData.js` et persistées en **localStorage**. L'application fonctionne entièrement dans le navigateur.
+> ** Important :** Ce projet est **100% frontend**. Il n'y a pas de serveur backend. Toutes les données sont simulées via un fichier `mockData.js` et persistées en **localStorage**. L'application fonctionne entièrement dans le navigateur.
 
 --- 
 
-## ✨ Fonctionnalités
+##  Fonctionnalités
 
 | Module | Description |
 |--------|------------|
-| 🔐 **Authentification** | Inscription, connexion, déconnexion — session gérée via `localStorage` |
-| 📊 **Dashboard** | KPIs en temps réel (véhicules, ventes, revenus, clients, employés), graphiques |
-| 👥 **Utilisateurs** | CRUD complet, attribution de rôles (Admin / Manager / Employé) |
-| 🏢 **Employés RH** | CRUD, upload photo en base64, gestion de documents (contrat, CV) |
-| 🚗 **Véhicules** | CRUD, filtres (marque, statut, année), recherche, gestion du stock |
-| 🤝 **Clients** | CRUD, historique d'achats, liaison automatique avec les ventes |
-| 💰 **Ventes** | Création de vente (client + véhicule + vendeur), suivi, historique |
-| 💳 **Paiements** | Suivi des paiements : Payé, En attente, Partiel |
-| 🔔 **Notifications** | Simulation : nouvelles ventes, nouveaux utilisateurs, badge compteur |
+|  **Authentification** | Inscription, connexion, déconnexion — session gérée via `localStorage` |
+|  **Dashboard** | KPIs en temps réel (véhicules, ventes, revenus, clients, employés), graphiques |
+|  **Utilisateurs** | CRUD complet, attribution de rôles (Admin / Manager / Employé) |
+|  **Employés RH** | CRUD, upload photo en base64, gestion de documents (contrat, CV) |
+|  **Véhicules** | CRUD, filtres (marque, statut, année), recherche, gestion du stock |
+|  **Clients** | CRUD, historique d'achats, liaison automatique avec les ventes |
+|  **Ventes** | Création de vente (client + véhicule + vendeur), suivi, historique |
+|  **Paiements** | Suivi des paiements : Payé, En attente, Partiel |
+|  **Notifications** | Simulation : nouvelles ventes, nouveaux utilisateurs, badge compteur |
 
 ---
 
@@ -95,7 +95,7 @@ Elle centralise la gestion de :
 
 ---
 
-## 🏗 Architecture du Projet
+## Architecture du Projet
 
 ```
 hgasys/
@@ -124,7 +124,7 @@ hgasys/
 │   │   └── AuthContext.jsx              # Context React — login, register, session, rôle
 │   │
 │   ├── data/
-│   │   └── mockData.js                  # ✅ Données fictives JSON (utilisateurs, véhicules, etc.)
+│   │   └── mockData.js                  # Données fictives JSON (utilisateurs, véhicules, etc.)
 │   │
 │   ├── pages/
 │   │   ├── auth/
@@ -172,10 +172,10 @@ hgasys/
 ├── postcss.config.js                    # Configuration PostCSS
 ├── vite.config.js                       # Configuration Vite
 ├── package.json                         # Dépendances et scripts
-└── README.md                            # 📖 Ce fichier
+└── README.md                            #  Ce fichier
 ```
 
-### 🔍 Rôle de chaque dossier
+###  Rôle de chaque dossier
 
 | Dossier | Responsabilité |
 |---------|---------------|
@@ -191,7 +191,7 @@ hgasys/
 
 ---
 
-## 🚀 Installation et Lancement
+##  Installation et Lancement
 
 ### Prérequis
 
@@ -235,9 +235,9 @@ npm run dev
 http://localhost:5173
 ```
 
-> ✅ L'application est prête ! Utilisez un des [comptes de démonstration](#-comptes-de-démonstration) pour vous connecter.
+> L'application est prête ! Utilisez un des [comptes de démonstration](#-comptes-de-démonstration) pour vous connecter.
 
-### 📦 Scripts disponibles
+###  Scripts disponibles
 
 | Commande | Description |
 |----------|------------|
@@ -245,7 +245,7 @@ http://localhost:5173
 | `npm run build` | Génère le build de production dans le dossier `dist/` |
 | `npm run preview` | Prévisualise le build de production localement |
 
-### 🔧 Recréer le projet depuis zéro
+###  Recréer le projet depuis zéro
 
 Si vous souhaitez recréer le projet avec les mêmes dépendances :
 
@@ -270,7 +270,7 @@ npm run dev
 
 ---
 
-## 🔑 Comptes de Démonstration
+##  Comptes de Démonstration
 
 Trois comptes sont pré-configurés dans l'application pour tester chaque niveau d'accès.
 Ils sont accessibles **directement depuis la page de connexion** en cliquant sur les boutons démo.
@@ -279,32 +279,32 @@ Ils sont accessibles **directement depuis la page de connexion** en cliquant sur
 
 | | Rôle | Email | Mot de passe |
 |---|------|-------|-------------|
-| 👑 | **Administrateur** | `admin@hgasys.com` | `admin123` |
-| 🧑‍💼 | **Manager** | `manager@hgasys.com` | `manager123` |
-| 👨‍🔧 | **Employé (Vendeur)** | `vendeur@hgasys.com` | `vendeur123` |
+|  | **Administrateur** | `admin@hgasys.com` | `admin123` |
+|  | **Manager** | `manager@hgasys.com` | `manager123` |
+|  | **Employé (Vendeur)** | `vendeur@hgasys.com` | `vendeur123` |
 
 </div>
 
 ### Que peut faire chaque compte ?
 
-**👑 Admin (`admin@hgasys.com`)** — Accès **total**
+** Admin (`admin@hgasys.com`)** — Accès **total**
 > Peut tout voir, tout créer, tout modifier et tout supprimer. Gère les utilisateurs et attribue les rôles. C'est le super-utilisateur du système.
 
-**🧑‍💼 Manager (`manager@hgasys.com`)** — Gestion **opérationnelle**
+** Manager (`manager@hgasys.com`)** — Gestion **opérationnelle**
 > Gère les employés, les clients, les véhicules et les ventes. Ne peut pas gérer les comptes utilisateurs ni accéder aux paramètres système.
 
-**👨‍🔧 Employé (`vendeur@hgasys.com`)** — Accès **limité**
+** Employé (`vendeur@hgasys.com`)** — Accès **limité**
 > Peut consulter les véhicules disponibles, gérer ses clients et créer des ventes. N'a pas accès au module RH, aux rapports ni à la gestion des utilisateurs.
 
 ---
 
-## 🔐 Rôles et Permissions
+##  Rôles et Permissions
 
 Le système d'accès est basé sur **3 rôles** définis dans `src/utils/roles.js`. Chaque rôle détermine quels modules et actions sont accessibles.
 
 ### Matrice complète des permissions
 
-| Module | 👑 Admin | 🧑‍💼 Manager | 👨‍🔧 Employé |
+| Module |  Admin | Manager |  Employé |
 |--------|:--------:|:-----------:|:-----------:|
 | **Dashboard** | ✅ Complet | ✅ Complet | ✅ Simplifié |
 | **Utilisateurs** | ✅ CRUD + Rôles | ❌ | ❌ |
@@ -336,9 +336,9 @@ Les routes dans `AppRoutes.jsx` sont protégées : si un utilisateur tente d'acc
 
 ---
 
-## 📦 Modules Fonctionnels
+##  Modules Fonctionnels
 
-### 📊 Dashboard — `src/pages/dashboard/Dashboard.jsx`
+###  Dashboard — `src/pages/dashboard/Dashboard.jsx`
 
 Vue d'ensemble de l'activité de l'entreprise.
 
@@ -351,9 +351,9 @@ Vue d'ensemble de l'activité de l'entreprise.
 
 ---
 
-### 👥 Gestion des Utilisateurs — `src/pages/users/Users.jsx`
+###  Gestion des Utilisateurs — `src/pages/users/Users.jsx`
 
-> 🔒 **Accès réservé : Admin uniquement**
+> **Accès réservé : Admin uniquement**
 
 | Fonctionnalité | Détail |
 |---------------|--------|
@@ -365,9 +365,9 @@ Vue d'ensemble de l'activité de l'entreprise.
 
 ---
 
-### 🏢 Gestion RH (Employés) — `src/pages/employees/Employees.jsx`
+###  Gestion RH (Employés) — `src/pages/employees/Employees.jsx`
 
-> 🔒 **Accès : Admin et Manager**
+> **Accès : Admin et Manager**
 
 | Fonctionnalité | Détail |
 |---------------|--------|
@@ -379,7 +379,7 @@ Vue d'ensemble de l'activité de l'entreprise.
 
 ---
 
-### 🚗 Gestion des Véhicules — `src/pages/vehicles/Vehicles.jsx`
+###  Gestion des Véhicules — `src/pages/vehicles/Vehicles.jsx`
 
 | Fonctionnalité | Détail |
 |---------------|--------|
@@ -391,7 +391,7 @@ Vue d'ensemble de l'activité de l'entreprise.
 
 ---
 
-### 🤝 Gestion des Clients — `src/pages/clients/Clients.jsx`
+###  Gestion des Clients — `src/pages/clients/Clients.jsx`
 
 | Fonctionnalité | Détail |
 |---------------|--------|
@@ -402,7 +402,7 @@ Vue d'ensemble de l'activité de l'entreprise.
 
 ---
 
-### 💰 Gestion des Ventes — `src/pages/sales/Sales.jsx`
+###  Gestion des Ventes — `src/pages/sales/Sales.jsx`
 
 | Fonctionnalité | Détail |
 |---------------|--------|
@@ -414,7 +414,7 @@ Vue d'ensemble de l'activité de l'entreprise.
 
 ---
 
-## 💾 Gestion des Données
+## Gestion des Données
 
 ### Source des données
 
@@ -451,7 +451,7 @@ Ce fichier contient des **données JSON fictives** pour chaque module :
 4. Données absentes   →  Fallback sur mockData.js
 ```
 
-> 💡 Pour réinitialiser les données, videz le `localStorage` du navigateur (DevTools → Application → Storage → Clear).
+>  Pour réinitialiser les données, videz le `localStorage` du navigateur (DevTools → Application → Storage → Clear).
 
 ### Les Services
 
@@ -480,7 +480,7 @@ export const getAll = () => {
 
 ---
 
-## 🔄 Flow de l'Application
+## Flow de l'Application
 
 ### Parcours utilisateur
 
@@ -549,13 +549,13 @@ export const getAll = () => {
 │                                                              │
 │   Navigation filtrée par rôle :                              │
 │                                                              │
-│   👑 Admin    → Dashboard, Utilisateurs, Employés,           │
+│    Admin    → Dashboard, Utilisateurs, Employés,           │
 │                 Véhicules, Clients, Ventes                   │
 │                                                              │
-│   🧑‍💼 Manager → Dashboard, Employés, Véhicules,              │
+│    Manager → Dashboard, Employés, Véhicules,              │
 │                 Clients, Ventes                              │
 │                                                              │
-│   👨‍🔧 Employé → Dashboard, Clients,                          │
+│    Employé → Dashboard, Clients,                          │
 │                 Véhicules (lecture), Ventes                   │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
@@ -589,27 +589,27 @@ export const getAll = () => {
 
 ---
 
-## 🖼 Captures d'écran
+## Captures d'écran
 
-### 🔐 Page de Connexion
+###  Page de Connexion
 
 > Design **split-screen** : branding à gauche, formulaire à droite.
 > Dégradé bleu `#1976D2 → #1565C0 → #0d47a1`.
 > Boutons de comptes démo pour connexion rapide.
 
-### 📝 Page d'Inscription
+###  Page d'Inscription
 
 > Layout inversé : formulaire à gauche, branding à droite.
 > Validation en temps réel des critères du mot de passe.
 > Indicateurs visuels vert/gris pour chaque règle.
 
-### 📊 Dashboard
+###  Dashboard
 
 > Cartes KPI avec icônes et couleurs distinctes.
 > Graphique des ventes mensuelles.
 > Section d'activité récente.
 
-### 📁 Sidebar
+###  Sidebar
 
 > Menu déroulant avec icônes Material Design.
 > Collapse/expand via la flèche `◀` / `▶`.
@@ -618,7 +618,7 @@ export const getAll = () => {
 
 ---
 
-## 📅 Roadmap
+##  Roadmap
 
 | Phase | Description | Statut |
 |-------|------------|--------|
@@ -629,12 +629,12 @@ export const getAll = () => {
 | **Phase 5** | Modules CRUD — Véhicules, Clients, Ventes, Utilisateurs | ✅ Terminé |
 | **Phase 6** | Module RH — Employés, Documents, Upload base64 | ✅ Terminé |
 | **Phase 7** | UI/UX — Design auth pages, sidebar, responsive | ✅ Terminé |
-| **Phase 8** | Tests et corrections | 🔄 En cours |
+| **Phase 8** | Tests et corrections | En cours |
 | **Phase 9** | Déploiement Netlify | ✅ Terminé |
 
 ---
 
-## 🤝 Contribution
+##  Contribution
 
 Les contributions sont les bienvenues ! Voici comment participer :
 
@@ -670,7 +670,7 @@ git push origin feature/ma-nouvelle-feature
 
 ---
 
-## 👤 Auteur
+## Auteur
 
 Développé par **[Votre Nom]**
 
@@ -679,7 +679,7 @@ Développé par **[Votre Nom]**
 
 ---
 
-## 📄 Licence
+##  Licence
 
 Ce projet est distribué sous licence **MIT**.
 
@@ -693,31 +693,12 @@ Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ---
 
-### 🚗 Développé avec ❤️ pour HGASYS
+###  Développé avec ❤️ pour HGASYS
 
 **React** · **Vite** · **Tailwind CSS** · **MUI Icons**
 
-[▶ Voir la Démo](https://hgasys.netlify.app/) · [📖 Documentation](#-table-des-matières) · [🐛 Signaler un Bug](https://github.com/lennysmicky/HGASYS_DESIGN/issues)
+[▶ Voir la Démo](https://hgasys.netlify.app/) · [ Documentation](#-table-des-matières) · [🐛 Signaler un Bug](https://github.com/lennysmicky/HGASYS_DESIGN/issues)
 
-⭐ **Si ce projet vous a été utile, n'hésitez pas à mettre une étoile !**
+**Si ce projet vous a été utile, n'hésitez pas à mettre une étoile !**
 
 </div>
-<<<<<<< HEAD
-=======
-```
-
-Les modifications faites :
-
-- **Structure corrigée** selon ta vraie arborescence avec `data/mockData.js` au lieu de `services/api.js`, pas de `constants.js`, et les fichiers racine `App.css`, `index.css`, `App.jsx`, `main.jsx`
-- **Assets** : ajout de `hero.png`, `react.svg`, `vite.svg` dans l'arbre
-- **Styles** : dossier `styles/` avec `auth.css` et `sidebar.css`
-- **Lien démo** : `https://hgasys.netlify.app/`
-- **Données** : section complète expliquant que `mockData.js` est la source, pas d'API externe
-- **Services** : listés sans `api.js` car pas de vrai backend
-- **Gestion des données** : nouvelle section détaillée expliquant le cycle mockData → localStorage → fallback
-- **Flow** : diagrammes ASCII plus détaillés avec le parcours complet
-- **Roadmap** : en tableau avec statuts, Phase 9 = Netlify au lieu de Vercel
-- **Conventions de commit** ajoutées
-- **Section Auteur** ajoutée
-- Remplace `votre-username` et `Votre Nom` par tes infos
->>>>>>> 2d52c783ae03e4ddcb79d50ae6c4fd8711de14b3
