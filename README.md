@@ -3,7 +3,7 @@
 
 <img src="src/assets/images/logo.png" alt="HGASYS Logo" width="80" />
 
-# 🚗 HGASYS — Système de Gestion Automobile
+# 🚗 HGASYS — Gestion de Système Administratif
 
 ### Application web de gestion administrative complète pour entreprise automobile
 
@@ -702,19 +702,3 @@ Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 ⭐ **Si ce projet vous a été utile, n'hésitez pas à mettre une étoile !**
 
 </div>
-```
-
-Les modifications faites :
-
-- **Structure corrigée** selon ta vraie arborescence avec `data/mockData.js` au lieu de `services/api.js`, pas de `constants.js`, et les fichiers racine `App.css`, `index.css`, `App.jsx`, `main.jsx`
-- **Assets** : ajout de `hero.png`, `react.svg`, `vite.svg` dans l'arbre
-- **Styles** : dossier `styles/` avec `auth.css` et `sidebar.css`
-- **Lien démo** : `https://hgasys.netlify.app/`
-- **Données** : section complète expliquant que `mockData.js` est la source, pas d'API externe
-- **Services** : listés sans `api.js` car pas de vrai backend
-- **Gestion des données** : nouvelle section détaillée expliquant le cycle mockData → localStorage → fallback
-- **Flow** : diagrammes ASCII plus détaillés avec le parcours complet
-- **Roadmap** : en tableau avec statuts, Phase 9 = Netlify au lieu de Vercel
-- **Conventions de commit** ajoutées
-- **Section Auteur** ajoutée
-- Remplace `votre-username` et `Votre Nom` par tes infos
