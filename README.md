@@ -3,7 +3,7 @@
 
 <img src="src/assets/images/logo.png" alt="HGASYS Logo" width="80" />
 
-# 🚗 HGASYS — Système de Gestion Automobile
+# 🚗 HGASYS — Gestion de Système Administratif
 
 ### Application web de gestion administrative complète pour entreprise automobile
 
