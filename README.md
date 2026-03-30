@@ -13,7 +13,7 @@
 [![MUI Icons](https://img.shields.io/badge/MUI_Icons-5.x-007FFF?style=for-the-badge&logo=mui&logoColor=white)](https://mui.com/)
 [![Netlify](https://img.shields.io/badge/Deployed_on-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://hgasys.netlify.app/)
 
- **[▶ Voir la Démo en Ligne](https://hgasys.netlify.app/)**
+ **[ Voir la Démo en Ligne](https://hgasys.netlify.app/)**
 
 ---
 
@@ -43,7 +43,7 @@
 
 ---
 
-##  Présentation
+# Présentation
 
 **HGASYS** est une application web **mono-page (SPA)** de gestion administrative développée en **React.js**, pensée pour les entreprises du secteur automobile : concessions, garages et importateurs.
 
@@ -62,7 +62,7 @@ Elle centralise la gestion de :
 
 --- 
 
-##  Fonctionnalités
+#  Fonctionnalités
 
 | Module | Description |
 |--------|------------|
@@ -78,7 +78,7 @@ Elle centralise la gestion de :
 
 ---
 
-## 🛠 Stack Technique
+# 🛠 Stack Technique
 
 | Technologie | Rôle dans le projet |
 |-------------|-------------------|
@@ -95,7 +95,7 @@ Elle centralise la gestion de :
 
 ---
 
-## Architecture du Projet
+# Architecture du Projet
 
 ```
 hgasys/
@@ -191,7 +191,7 @@ hgasys/
 
 ---
 
-##  Installation et Lancement
+#  Installation et Lancement
 
 ### Prérequis
 
@@ -270,7 +270,7 @@ npm run dev
 
 ---
 
-##  Comptes de Démonstration
+#  Comptes de Démonstration
 
 Trois comptes sont pré-configurés dans l'application pour tester chaque niveau d'accès.
 Ils sont accessibles **directement depuis la page de connexion** en cliquant sur les boutons démo.
@@ -298,7 +298,7 @@ Ils sont accessibles **directement depuis la page de connexion** en cliquant sur
 
 ---
 
-##  Rôles et Permissions
+#  Rôles et Permissions
 
 Le système d'accès est basé sur **3 rôles** définis dans `src/utils/roles.js`. Chaque rôle détermine quels modules et actions sont accessibles.
 
@@ -336,7 +336,7 @@ Les routes dans `AppRoutes.jsx` sont protégées : si un utilisateur tente d'acc
 
 ---
 
-##  Modules Fonctionnels
+#  Modules Fonctionnels
 
 ###  Dashboard — `src/pages/dashboard/Dashboard.jsx`
 
@@ -414,7 +414,7 @@ Vue d'ensemble de l'activité de l'entreprise.
 
 ---
 
-## Gestion des Données
+# Gestion des Données
 
 ### Source des données
 
@@ -480,7 +480,7 @@ export const getAll = () => {
 
 ---
 
-## Flow de l'Application
+# Flow de l'Application
 
 ### Parcours utilisateur
 
@@ -589,7 +589,7 @@ export const getAll = () => {
 
 ---
 
-## Captures d'écran
+# Captures d'écran
 
 ###  Page de Connexion
 
@@ -618,7 +618,7 @@ export const getAll = () => {
 
 ---
 
-##  Roadmap
+#  Roadmap
 
 | Phase | Description | Statut |
 |-------|------------|--------|
@@ -629,12 +629,12 @@ export const getAll = () => {
 | **Phase 5** | Modules CRUD — Véhicules, Clients, Ventes, Utilisateurs | ✅ Terminé |
 | **Phase 6** | Module RH — Employés, Documents, Upload base64 | ✅ Terminé |
 | **Phase 7** | UI/UX — Design auth pages, sidebar, responsive | ✅ Terminé |
-| **Phase 8** | Tests et corrections | En cours |
+| **Phase 8** | Tests et corrections | ✅ Terminé  |
 | **Phase 9** | Déploiement Netlify | ✅ Terminé |
 
 ---
 
-##  Contribution
+#  Contribution
 
 Les contributions sont les bienvenues ! Voici comment participer :
 
@@ -670,7 +670,7 @@ git push origin feature/ma-nouvelle-feature
 
 ---
 
-## Auteur
+# Auteur
 
 Développé par **[Votre Nom]**
 
@@ -679,7 +679,7 @@ Développé par **[Votre Nom]**
 
 ---
 
-##  Licence
+#  Licence
 
 Ce projet est distribué sous licence **MIT**.
 
@@ -697,7 +697,7 @@ Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 **React** · **Vite** · **Tailwind CSS** · **MUI Icons**
 
-[▶ Voir la Démo](https://hgasys.netlify.app/) · [ Documentation](#-table-des-matières) · [🐛 Signaler un Bug](https://github.com/lennysmicky/HGASYS_DESIGN/issues)
+[ Voir la Démo](https://hgasys.netlify.app/) · [ Documentation](#-table-des-matières) · [ Signaler un Bug](https://github.com/lennysmicky/HGASYS_DESIGN/issues)
 
 **Si ce projet vous a été utile, n'hésitez pas à mettre une étoile !**
 
