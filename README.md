@@ -1,6 +1,4 @@
 
-
-```markdown
 <div align="center">
 
 <img src="src/assets/images/logo.png" alt="HGASYS Logo" width="80" />
@@ -210,7 +208,7 @@ Assurez-vous d'avoir installé :
 **1️⃣ Cloner le dépôt**
 
 ```bash
-git clone https://github.com/votre-username/hgasys.git
+git clone https://github.com/lennysmicky/HGASYS_DESIGN.git
 ```
 
 **2️⃣ Accéder au dossier du projet**
@@ -644,7 +642,7 @@ Les contributions sont les bienvenues ! Voici comment participer :
 # 1. Forker le projet sur GitHub
 
 # 2. Cloner votre fork
-git clone https://github.com/votre-username/hgasys.git
+git clone https://github.com/lennysmicky/HGASYS_DESIGN.git
 cd hgasys
 
 # 3. Créer une branche pour votre fonctionnalité
@@ -676,8 +674,8 @@ git push origin feature/ma-nouvelle-feature
 
 Développé par **[Votre Nom]**
 
-- GitHub : [@votre-username](https://github.com/votre-username)
-- LinkedIn : [Votre Profil](https://linkedin.com/in/votre-profil)
+- GitHub : [@lennysmicky](https://github.com/lennysmicky/HGASYS_DESIGN)
+- LinkedIn : [Ingénieur Réseaux & Cybersécurité | Full Stack Web/Mobile](https://www.linkedin.com/in/kossi-michael-zodjekpo)
 
 ---
 
@@ -699,7 +697,7 @@ Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 **React** · **Vite** · **Tailwind CSS** · **MUI Icons**
 
-[▶ Voir la Démo](https://hgasys.netlify.app/) · [📖 Documentation](#-table-des-matières) · [🐛 Signaler un Bug](https://github.com/votre-username/hgasys/issues)
+[▶ Voir la Démo](https://hgasys.netlify.app/) · [📖 Documentation](#-table-des-matières) · [🐛 Signaler un Bug](https://github.com/lennysmicky/HGASYS_DESIGN/issues)
 
 ⭐ **Si ce projet vous a été utile, n'hésitez pas à mettre une étoile !**
 
