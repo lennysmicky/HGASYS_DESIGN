@@ -1,7 +1,20 @@
+// src/pages/auth/Register.jsx
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Person, Email, Lock, Visibility, VisibilityOff, DirectionsCar, CheckCircleOutline, ErrorOutline, Speed, BuildCircle } from '@mui/icons-material';
+import {
+  Person,
+  Email,
+  Lock,
+  Visibility,
+  VisibilityOff,
+  DirectionsCar,
+  CheckCircleOutline,
+  ErrorOutline,
+  Speed,
+  BuildCircle,
+} from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
+import { ROLES } from '../../utils/roles';
 import '../../styles/auth.css';
 import logo from '../../assets/images/logo.png';
 
@@ -21,19 +34,30 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
+    setSuccessMessage('');
 
-    if (password !== confirmPassword) {
-      setError('Les mots de passe ne correspondent pas');
+    // Validations
+    if (!name.trim()) {
+      setError('Le nom est requis');
+      return;
+    }
+    if (!email.trim()) {
+      setError("L'email est requis");
       return;
     }
     if (password.length < 6) {
       setError('Le mot de passe doit contenir au moins 6 caractères');
       return;
     }
+    if (password !== confirmPassword) {
+      setError('Les mots de passe ne correspondent pas');
+      return;
+    }
 
     setLoading(true);
     setTimeout(() => {
-      const result = register(name, email, password);
+      // Par défaut, un nouvel inscrit est COMMERCIAL
+      const result = register(name, email, password, ROLES.COMMERCIAL);
       if (result.success) {
         setSuccessMessage('Compte créé avec succès !');
         setTimeout(() => navigate('/dashboard'), 1500);
@@ -47,7 +71,7 @@ const Register = () => {
   return (
     <div className="auth-page">
       <div className="auth-container auth-container-reverse">
-
+        {/* ═══ Formulaire gauche ═══ */}
         <div className="auth-form-section auth-form-section-left">
           <div className="auth-card">
             <div className="auth-card-header">
@@ -57,19 +81,27 @@ const Register = () => {
                 className="auth-card-logo auth-card-logo-mobile"
               />
               <h2 className="auth-card-title">Créer un compte</h2>
-              <p className="auth-card-subtitle">Rejoignez HGASYS en quelques instants</p>
+              <p className="auth-card-subtitle">
+                Rejoignez HGASYS en quelques instants
+              </p>
             </div>
 
             {error && (
               <div className="auth-alert auth-alert-error">
-                <ErrorOutline className="auth-alert-icon" style={{ fontSize: '1rem' }} />
+                <ErrorOutline
+                  className="auth-alert-icon"
+                  style={{ fontSize: '1rem' }}
+                />
                 <span>{error}</span>
               </div>
             )}
 
             {successMessage && (
               <div className="auth-alert auth-alert-success">
-                <CheckCircleOutline className="auth-alert-icon" style={{ fontSize: '1rem' }} />
+                <CheckCircleOutline
+                  className="auth-alert-icon"
+                  style={{ fontSize: '1rem' }}
+                />
                 <span>{successMessage}</span>
               </div>
             )}
@@ -78,7 +110,10 @@ const Register = () => {
               <div className="auth-input-group">
                 <label className="auth-label">Nom complet</label>
                 <div className="auth-input-wrapper">
-                  <Person className="auth-input-icon" style={{ fontSize: '1.1rem' }} />
+                  <Person
+                    className="auth-input-icon"
+                    style={{ fontSize: '1.1rem' }}
+                  />
                   <input
                     type="text"
                     value={name}
@@ -94,7 +129,10 @@ const Register = () => {
               <div className="auth-input-group">
                 <label className="auth-label">Email</label>
                 <div className="auth-input-wrapper">
-                  <Email className="auth-input-icon" style={{ fontSize: '1.1rem' }} />
+                  <Email
+                    className="auth-input-icon"
+                    style={{ fontSize: '1.1rem' }}
+                  />
                   <input
                     type="email"
                     value={email}
@@ -110,7 +148,10 @@ const Register = () => {
               <div className="auth-input-group">
                 <label className="auth-label">Mot de passe</label>
                 <div className="auth-input-wrapper">
-                  <Lock className="auth-input-icon" style={{ fontSize: '1.1rem' }} />
+                  <Lock
+                    className="auth-input-icon"
+                    style={{ fontSize: '1.1rem' }}
+                  />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={password}
@@ -126,7 +167,11 @@ const Register = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="auth-password-toggle"
                   >
-                    {showPassword ? <VisibilityOff style={{ fontSize: '1.1rem' }} /> : <Visibility style={{ fontSize: '1.1rem' }} />}
+                    {showPassword ? (
+                      <VisibilityOff style={{ fontSize: '1.1rem' }} />
+                    ) : (
+                      <Visibility style={{ fontSize: '1.1rem' }} />
+                    )}
                   </button>
                 </div>
               </div>
@@ -134,7 +179,10 @@ const Register = () => {
               <div className="auth-input-group">
                 <label className="auth-label">Confirmer le mot de passe</label>
                 <div className="auth-input-wrapper">
-                  <Lock className="auth-input-icon" style={{ fontSize: '1.1rem' }} />
+                  <Lock
+                    className="auth-input-icon"
+                    style={{ fontSize: '1.1rem' }}
+                  />
                   <input
                     type={showConfirmPassword ? 'text' : 'password'}
                     value={confirmPassword}
@@ -146,10 +194,16 @@ const Register = () => {
                   />
                   <button
                     type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    onClick={() =>
+                      setShowConfirmPassword(!showConfirmPassword)
+                    }
                     className="auth-password-toggle"
                   >
-                    {showConfirmPassword ? <VisibilityOff style={{ fontSize: '1.1rem' }} /> : <Visibility style={{ fontSize: '1.1rem' }} />}
+                    {showConfirmPassword ? (
+                      <VisibilityOff style={{ fontSize: '1.1rem' }} />
+                    ) : (
+                      <Visibility style={{ fontSize: '1.1rem' }} />
+                    )}
                   </button>
                 </div>
               </div>
@@ -157,19 +211,43 @@ const Register = () => {
               <div className="auth-password-info">
                 <p>Le mot de passe doit contenir :</p>
                 <ul>
-                  <li className={password.length >= 6 ? 'valid' : ''}>Au moins 6 caractères</li>
-                  <li className={/[A-Z]/.test(password) ? 'valid' : ''}>Une lettre majuscule</li>
-                  <li className={/[a-z]/.test(password) ? 'valid' : ''}>Une lettre minuscule</li>
-                  <li className={/\d/.test(password) ? 'valid' : ''}>Un chiffre</li>
+                  <li className={password.length >= 6 ? 'valid' : ''}>
+                    Au moins 6 caractères
+                  </li>
+                  <li className={/[A-Z]/.test(password) ? 'valid' : ''}>
+                    Une lettre majuscule
+                  </li>
+                  <li className={/[a-z]/.test(password) ? 'valid' : ''}>
+                    Une lettre minuscule
+                  </li>
+                  <li className={/\d/.test(password) ? 'valid' : ''}>
+                    Un chiffre
+                  </li>
                 </ul>
               </div>
 
-              <button type="submit" disabled={loading} className="auth-submit-btn">
+              <button
+                type="submit"
+                disabled={loading}
+                className="auth-submit-btn"
+              >
                 {loading ? (
                   <span className="auth-btn-loading">
                     <svg className="auth-spinner" viewBox="0 0 24 24">
-                      <circle className="auth-spinner-circle" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                      <path className="auth-spinner-path" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      <circle
+                        className="auth-spinner-circle"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        className="auth-spinner-path"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                      />
                     </svg>
                     Création...
                   </span>
@@ -186,16 +264,19 @@ const Register = () => {
           </div>
         </div>
 
+        {/* ═══ Branding droit ═══ */}
         <div className="auth-branding auth-branding-right">
           <div className="auth-branding-content">
             <img
-              src="/src/assets/images/logo.png"
+              src={logo}
               alt="HGASYS"
               className="auth-branding-logo"
             />
             <h1 className="auth-branding-title">HGASYS</h1>
             <p className="auth-branding-subtitle">
-              Rejoignez notre plateforme<br />de gestion automobile
+              Rejoignez notre plateforme
+              <br />
+              de gestion automobile
             </p>
 
             <div className="auth-branding-features">

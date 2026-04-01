@@ -1,9 +1,64 @@
+// src/pages/auth/Login.jsx
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Email, Lock, Visibility, VisibilityOff, DirectionsCar, PeopleOutline, Assessment, Security, CheckCircleOutline, ErrorOutline } from '@mui/icons-material';
+import {
+  Email,
+  Lock,
+  Visibility,
+  VisibilityOff,
+  DirectionsCar,
+  PeopleOutline,
+  Assessment,
+  Security,
+  CheckCircleOutline,
+  ErrorOutline,
+} from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
+import { getRoleColor } from '../../utils/roles';
 import '../../styles/auth.css';
 import logo from '../../assets/images/logo.png';
+
+// ═══════════════════════════════════════════
+// COMPTES DÉMO — tous les rôles
+// ═══════════════════════════════════════════
+const demoAccounts = [
+  {
+    label: 'Admin',
+    email: 'admin@hgasys.com',
+    password: 'admin123',
+    color: '#d32f2f',
+  },
+  {
+    label: 'Manager',
+    email: 'manager@hgasys.com',
+    password: 'manager123',
+    color: '#1976D2',
+  },
+  {
+    label: 'Commercial',
+    email: 'karim@hgasys.com',
+    password: 'karim123',
+    color: '#FF9800',
+  },
+  {
+    label: 'Technicien',
+    email: 'youcef@hgasys.com',
+    password: 'youcef123',
+    color: '#7B1FA2',
+  },
+  {
+    label: 'Stock',
+    email: 'nadir@hgasys.com',
+    password: 'nadir123',
+    color: '#00796B',
+  },
+  {
+    label: 'Agent Client',
+    email: 'amina@hgasys.com',
+    password: 'amina123',
+    color: '#388e3c',
+  },
+];
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -18,25 +73,20 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
+    setSuccessMessage('');
     setLoading(true);
 
     setTimeout(() => {
       const result = login(email, password);
       if (result.success) {
-        navigate('/dashboard');
+        setSuccessMessage(`Bienvenue ${result.user.name} !`);
+        setTimeout(() => navigate('/dashboard'), 500);
       } else {
         setError(result.message);
       }
       setLoading(false);
     }, 800);
   };
-
-  const demoAccounts = [
-    { label: 'Admin', email: 'admin@hgasys.com', password: 'admin123', color: '#d32f2f' },
-    { label: 'Manager', email: 'manager@hgasys.com', password: 'manager123', color: '#1976D2' },
-    { label: 'Employé', email: 'vendeur@hgasys.com', password: 'vendeur123', color: '#388e3c' },
-    { label: 'Employé', email: 'sara@hgasys.com', password: 'sara123', color: '#388e3c' },
-  ];
 
   const fillDemoAccount = (acc) => {
     setEmail(acc.email);
@@ -49,7 +99,7 @@ const Login = () => {
   return (
     <div className="auth-page">
       <div className="auth-container">
-
+        {/* ═══ Branding gauche ═══ */}
         <div className="auth-branding">
           <div className="auth-branding-content">
             <img
@@ -59,7 +109,9 @@ const Login = () => {
             />
             <h1 className="auth-branding-title">HGASYS</h1>
             <p className="auth-branding-subtitle">
-              Système de Gestion Administrative<br />
+              Système de Gestion Administrative
+              <br />
+              & Automobile
             </p>
 
             <div className="auth-branding-features">
@@ -91,6 +143,7 @@ const Login = () => {
           </div>
         </div>
 
+        {/* ═══ Formulaire droit ═══ */}
         <div className="auth-form-section">
           <div className="auth-card">
             <div className="auth-card-header">
@@ -100,19 +153,27 @@ const Login = () => {
                 className="auth-card-logo auth-card-logo-mobile"
               />
               <h2 className="auth-card-title">Bienvenue</h2>
-              <p className="auth-card-subtitle">Connectez-vous à votre espace HGASYS</p>
+              <p className="auth-card-subtitle">
+                Connectez-vous à votre espace HGASYS
+              </p>
             </div>
 
             {error && (
               <div className="auth-alert auth-alert-error">
-                <ErrorOutline className="auth-alert-icon" style={{ fontSize: '1rem' }} />
+                <ErrorOutline
+                  className="auth-alert-icon"
+                  style={{ fontSize: '1rem' }}
+                />
                 <span>{error}</span>
               </div>
             )}
 
             {successMessage && (
               <div className="auth-alert auth-alert-success">
-                <CheckCircleOutline className="auth-alert-icon" style={{ fontSize: '1rem' }} />
+                <CheckCircleOutline
+                  className="auth-alert-icon"
+                  style={{ fontSize: '1rem' }}
+                />
                 <span>{successMessage}</span>
               </div>
             )}
@@ -121,7 +182,10 @@ const Login = () => {
               <div className="auth-input-group">
                 <label className="auth-label">Email</label>
                 <div className="auth-input-wrapper">
-                  <Email className="auth-input-icon" style={{ fontSize: '1.1rem' }} />
+                  <Email
+                    className="auth-input-icon"
+                    style={{ fontSize: '1.1rem' }}
+                  />
                   <input
                     type="email"
                     value={email}
@@ -137,7 +201,10 @@ const Login = () => {
               <div className="auth-input-group">
                 <label className="auth-label">Mot de passe</label>
                 <div className="auth-input-wrapper">
-                  <Lock className="auth-input-icon" style={{ fontSize: '1.1rem' }} />
+                  <Lock
+                    className="auth-input-icon"
+                    style={{ fontSize: '1.1rem' }}
+                  />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={password}
@@ -152,7 +219,11 @@ const Login = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="auth-password-toggle"
                   >
-                    {showPassword ? <VisibilityOff style={{ fontSize: '1.1rem' }} /> : <Visibility style={{ fontSize: '1.1rem' }} />}
+                    {showPassword ? (
+                      <VisibilityOff style={{ fontSize: '1.1rem' }} />
+                    ) : (
+                      <Visibility style={{ fontSize: '1.1rem' }} />
+                    )}
                   </button>
                 </div>
               </div>
@@ -167,12 +238,28 @@ const Login = () => {
                 </Link>
               </div>
 
-              <button type="submit" disabled={loading} className="auth-submit-btn">
+              <button
+                type="submit"
+                disabled={loading}
+                className="auth-submit-btn"
+              >
                 {loading ? (
                   <span className="auth-btn-loading">
                     <svg className="auth-spinner" viewBox="0 0 24 24">
-                      <circle className="auth-spinner-circle" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                      <path className="auth-spinner-path" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      <circle
+                        className="auth-spinner-circle"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        className="auth-spinner-path"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                      />
                     </svg>
                     Connexion...
                   </span>
@@ -182,6 +269,7 @@ const Login = () => {
               </button>
             </form>
 
+            {/* ─── Comptes démo ─── */}
             <div className="auth-demo-section">
               <div className="auth-divider">
                 <span>Comptes de démonstration</span>

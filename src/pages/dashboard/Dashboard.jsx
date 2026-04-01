@@ -1,6 +1,17 @@
+// src/pages/dashboard/Dashboard.jsx
 import { useAuth } from '../../context/AuthContext';
-import { canDo } from '../../utils/roles';
-import { mockStats, mockSales, mockVehicles, mockClients } from '../../data/mockData';
+import { ROLES } from '../../utils/roles';
+import {
+  mockStats,
+  mockSales,
+  mockVehicles,
+  mockClients,
+  mockReceptions,
+  mockRepairs,
+  mockInterventions,
+  mockParts,
+  mockOrders,
+} from '../../data/mockData';
 import {
   DirectionsCar,
   People,
@@ -8,302 +19,711 @@ import {
   AttachMoney,
   TrendingUp,
   TrendingDown,
-  BadgeOutlined,
   CheckCircle,
   HourglassEmpty,
+  Build,
+  Inventory,
+  SupportAgent,
+  Warning,
 } from '@mui/icons-material';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, AreaChart, Area, Legend
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  AreaChart,
+  Area,
+  Legend,
 } from 'recharts';
+import '../../styles/dashboard.css';
 
 const COLORS = ['#1976D2', '#2196F3', '#42A5F5', '#64B5F6', '#90CAF9', '#BBDEFB'];
 
+// ═══════════════════════════════════════════
+// COMPOSANT STAT CARD
+// ═══════════════════════════════════════════
 const StatCard = ({ title, value, icon, color, subtitle, trend }) => (
-  <div className="bg-white rounded-xl border border-gray-100 p-4 hover:shadow-md transition-shadow">
-    <div className="flex items-start justify-between">
+  <div className="dash-stat-card">
+    <div className="dash-stat-top">
       <div>
-        <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">{title}</p>
-        <p className="text-2xl font-bold text-gray-800 mt-1">{value}</p>
+        <p className="dash-stat-title">{title}</p>
+        <p className={`dash-stat-value ${String(value).length > 10 ? 'dash-stat-value-small' : ''}`}>
+          {value}
+        </p>
         {subtitle && (
-          <div className="flex items-center gap-1 mt-1.5">
-            {trend === 'up' ? (
-              <TrendingUp sx={{ fontSize: 14, color: '#4caf50' }} />
-            ) : trend === 'down' ? (
-              <TrendingDown sx={{ fontSize: 14, color: '#f44336' }} />
-            ) : null}
-            <span className={`text-[10px] font-medium ${trend === 'up' ? 'text-green-500' : trend === 'down' ? 'text-red-500' : 'text-gray-400'}`}>
+          <div className="dash-stat-subtitle">
+            {trend === 'up' && <TrendingUp sx={{ fontSize: 14 }} />}
+            {trend === 'down' && <TrendingDown sx={{ fontSize: 14 }} />}
+            <span className={
+              trend === 'up'
+                ? 'dash-stat-subtitle-up'
+                : trend === 'down'
+                ? 'dash-stat-subtitle-down'
+                : 'dash-stat-subtitle-neutral'
+            }>
               {subtitle}
             </span>
           </div>
         )}
       </div>
       <div
-        className="w-10 h-10 rounded-lg flex items-center justify-center"
-        style={{ backgroundColor: color + '15' }}
+        className="dash-stat-icon"
+        style={{ backgroundColor: color + '15', color }}
       >
-        <span style={{ color }}>{icon}</span>
+        {icon}
       </div>
     </div>
   </div>
 );
 
+// ═══════════════════════════════════════════
+// HELPER
+// ═══════════════════════════════════════════
+const formatPrice = (price) =>
+  new Intl.NumberFormat('fr-DZ').format(price) + ' CFA';
+
+// ═══════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════
 const Dashboard = () => {
   const { user } = useAuth();
-  const showReports = canDo(user?.role, 'canViewReports');
+  const role = user?.role;
 
-  const recentSales = mockSales.slice(0, 5);
-  const recentVehicles = mockVehicles.filter(v => v.statut === 'disponible').slice(0, 4);
+  const recentSales = mockSales.slice(0, 4);
+  const recentVehicles = mockVehicles
+    .filter((v) => v.statut === 'disponible')
+    .slice(0, 4);
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('fr-DZ').format(price) + ' CFA';
-  };
-
+  // ─── Rendu par rôle ───
   return (
-    <div className="space-y-5">
+    <div className="dashboard">
       {/* Header */}
-      <div>
-        <h1 className="text-lg font-bold text-gray-800">Tableau de bord</h1>
-        <p className="text-xs text-gray-400 mt-0.5">Vue d'ensemble de l'activité</p>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <StatCard
-          title="Véhicules"
-          value={mockStats.totalVehicules}
-          icon={<DirectionsCar fontSize="small" />}
-          color="#1976D2"
-          subtitle={`${mockStats.vehiculesDisponibles} disponibles`}
-          trend="up"
-        />
-        <StatCard
-          title="Ventes"
-          value={mockStats.totalVentes}
-          icon={<ShoppingCart fontSize="small" />}
-          color="#9c27b0"
-          subtitle={`${mockStats.ventesEnCours} en cours`}
-          trend="up"
-        />
-        <StatCard
-          title="Clients"
-          value={mockStats.totalClients}
-          icon={<People fontSize="small" />}
-          color="#ff9800"
-          subtitle="+2 ce mois"
-          trend="up"
-        />
-        {showReports && (
-          <StatCard
-            title="Revenus"
-            value={formatPrice(mockStats.revenus)}
-            icon={<AttachMoney fontSize="small" />}
-            color="#4caf50"
-            subtitle="+12% vs mois dernier"
-            trend="up"
-          />
-        )}
-        {!showReports && (
-          <StatCard
-            title="Employés"
-            value={mockStats.employesActifs}
-            icon={<BadgeOutlined fontSize="small" />}
-            color="#4caf50"
-            subtitle="Tous actifs"
-          />
-        )}
-      </div>
-
-      {/* Charts Row */}
-      {showReports && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* Revenus Chart */}
-          <div className="lg:col-span-2 bg-white rounded-xl border border-gray-100 p-4">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h3 className="text-sm font-semibold text-gray-800">Revenus mensuels</h3>
-                <p className="text-[10px] text-gray-400 mt-0.5">Évolution sur l'année 2024</p>
-              </div>
-              <div className="flex items-center gap-1 px-2 py-1 bg-green-50 rounded-md">
-                <TrendingUp sx={{ fontSize: 12, color: '#4caf50' }} />
-                <span className="text-[10px] font-semibold text-green-600">+12%</span>
-              </div>
-            </div>
-            <ResponsiveContainer width="100%" height={220}>
-              <AreaChart data={mockStats.ventesParMois}>
-                <defs>
-                  <linearGradient id="colorRevenus" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#1976D2" stopOpacity={0.15} />
-                    <stop offset="95%" stopColor="#1976D2" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis dataKey="mois" tick={{ fontSize: 10, fill: '#9e9e9e' }} />
-                <YAxis tick={{ fontSize: 10, fill: '#9e9e9e' }} tickFormatter={(v) => `${v / 1000000}M`} />
-                <Tooltip
-                  contentStyle={{ fontSize: 11, borderRadius: 8, border: '1px solid #e0e0e0' }}
-                  formatter={(value) => [formatPrice(value), 'Revenus']}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="revenus"
-                  stroke="#1976D2"
-                  strokeWidth={2}
-                  fill="url(#colorRevenus)"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Pie Chart */}
-          <div className="bg-white rounded-xl border border-gray-100 p-4">
-            <h3 className="text-sm font-semibold text-gray-800">Ventes par marque</h3>
-            <p className="text-[10px] text-gray-400 mt-0.5 mb-3">Répartition des ventes</p>
-            <ResponsiveContainer width="100%" height={220}>
-              <PieChart>
-                <Pie
-                  data={mockStats.ventesParMarque}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={45}
-                  outerRadius={75}
-                  paddingAngle={3}
-                  dataKey="ventes"
-                  nameKey="marque"
-                >
-                  {mockStats.ventesParMarque.map((entry, index) => (
-                    <Cell key={entry.marque} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{ fontSize: 11, borderRadius: 8, border: '1px solid #e0e0e0' }}
-                />
-                <Legend
-                  iconSize={8}
-                  wrapperStyle={{ fontSize: 10 }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
+      <div className="dash-header">
+        <div className="dash-header-left">
+          <h1>Tableau de bord</h1>
+          <p>Vue d'ensemble de l'activité</p>
         </div>
-      )}
+      </div>
 
-      {/* Ventes par mois - Bar chart */}
-      {showReports && (
-        <div className="bg-white rounded-xl border border-gray-100 p-4">
-          <h3 className="text-sm font-semibold text-gray-800">Nombre de ventes par mois</h3>
-          <p className="text-[10px] text-gray-400 mt-0.5 mb-4">Année 2024</p>
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={mockStats.ventesParMois}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis dataKey="mois" tick={{ fontSize: 10, fill: '#9e9e9e' }} />
-              <YAxis tick={{ fontSize: 10, fill: '#9e9e9e' }} />
-              <Tooltip
-                contentStyle={{ fontSize: 11, borderRadius: 8, border: '1px solid #e0e0e0' }}
+      {/* ═══════════════════════════════════════ */}
+      {/* ADMIN / MANAGER : Vue complète          */}
+      {/* ═══════════════════════════════════════ */}
+      {(role === ROLES.ADMIN || role === ROLES.MANAGER) && (
+        <>
+          {/* Stats */}
+          <div className="dash-stats-grid">
+            <StatCard
+              title="Ventes du mois"
+              value={mockStats.totalVentes}
+              icon={<ShoppingCart fontSize="small" />}
+              color="#9c27b0"
+              subtitle={`${mockStats.ventesEnCours} en cours`}
+              trend="up"
+            />
+            <StatCard
+              title="Véhicules dispo"
+              value={mockStats.vehiculesDisponibles}
+              icon={<DirectionsCar fontSize="small" />}
+              color="#1976D2"
+              subtitle={`${mockStats.totalVehicules} total`}
+            />
+            <StatCard
+              title="Clients"
+              value={mockStats.totalClients}
+              icon={<People fontSize="small" />}
+              color="#ff9800"
+              subtitle="+2 ce mois"
+              trend="up"
+            />
+            {role === ROLES.ADMIN && (
+              <StatCard
+                title="Chiffre d'affaires"
+                value={formatPrice(mockStats.revenus)}
+                icon={<AttachMoney fontSize="small" />}
+                color="#4caf50"
+                subtitle="+12% vs mois dernier"
+                trend="up"
               />
-              <Bar dataKey="ventes" fill="#1976D2" radius={[4, 4, 0, 0]} barSize={30} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+            )}
+            {role === ROLES.MANAGER && (
+              <StatCard
+                title="Employés actifs"
+                value={mockStats.employesActifs}
+                icon={<People fontSize="small" />}
+                color="#4caf50"
+                subtitle={`${mockStats.totalEmployes} total`}
+              />
+            )}
+          </div>
+
+          {/* Chart revenus (Admin uniquement) */}
+          {role === ROLES.ADMIN && (
+            <div className="dash-card">
+              <div className="dash-chart-header">
+                <div>
+                  <h3 className="dash-card-title">Revenus mensuels</h3>
+                  <p className="dash-card-subtitle">Évolution 2024</p>
+                </div>
+                <div className="dash-chart-badge">
+                  <TrendingUp sx={{ fontSize: 12 }} />
+                  <span>+12%</span>
+                </div>
+              </div>
+              <ResponsiveContainer width="100%" height={200}>
+                <AreaChart data={mockStats.ventesParMois}>
+                  <defs>
+                    <linearGradient id="colorRevenus" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#1976D2" stopOpacity={0.15} />
+                      <stop offset="95%" stopColor="#1976D2" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis dataKey="mois" tick={{ fontSize: 10, fill: '#9e9e9e' }} />
+                  <YAxis
+                    tick={{ fontSize: 10, fill: '#9e9e9e' }}
+                    tickFormatter={(v) => `${v / 1000000}M`}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      fontSize: 11,
+                      borderRadius: 8,
+                      border: '1px solid #e0e0e0',
+                    }}
+                    formatter={(value) => [formatPrice(value), 'Revenus']}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="revenus"
+                    stroke="#1976D2"
+                    strokeWidth={2}
+                    fill="url(#colorRevenus)"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+
+          {/* Ventes + Véhicules */}
+          <div className="dash-content-grid">
+            <div className="dash-card">
+              <div className="dash-card-header">
+                <div>
+                  <h3 className="dash-card-title">Dernières ventes</h3>
+                  <p className="dash-card-subtitle">Transactions récentes</p>
+                </div>
+                <ShoppingCart className="dash-card-icon" sx={{ fontSize: 18 }} />
+              </div>
+              <div className="dash-list">
+                {recentSales.map((sale) => (
+                  <div key={sale.id} className="dash-sale-item">
+                    <div className="dash-sale-left">
+                      <div className={`dash-sale-status-icon ${
+                        sale.paiement.statut === 'payé'
+                          ? 'dash-sale-status-paid'
+                          : 'dash-sale-status-pending'
+                      }`}>
+                        {sale.paiement.statut === 'payé' ? (
+                          <CheckCircle sx={{ fontSize: 16, color: '#4caf50' }} />
+                        ) : (
+                          <HourglassEmpty sx={{ fontSize: 16, color: '#ff9800' }} />
+                        )}
+                      </div>
+                      <div>
+                        <p className="dash-sale-name">{sale.vehicleName}</p>
+                        <p className="dash-sale-meta">
+                          {sale.clientName} • {sale.date}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="dash-sale-right">
+                      <p className="dash-sale-amount">{formatPrice(sale.montant)}</p>
+                      <p className={`dash-sale-payment ${
+                        sale.paiement.statut === 'payé'
+                          ? 'dash-sale-payment-paid'
+                          : 'dash-sale-payment-pending'
+                      }`}>
+                        {sale.paiement.statut === 'payé' ? 'Payé' : 'En attente'}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="dash-card">
+              <div className="dash-card-header">
+                <div>
+                  <h3 className="dash-card-title">Véhicules disponibles</h3>
+                  <p className="dash-card-subtitle">
+                    {mockStats.vehiculesDisponibles} en stock
+                  </p>
+                </div>
+                <DirectionsCar className="dash-card-icon" sx={{ fontSize: 18 }} />
+              </div>
+              <div className="dash-list">
+                {recentVehicles.map((v) => (
+                  <div key={v.id} className="dash-vehicle-item">
+                    <img
+                      src={v.image}
+                      alt={v.modele}
+                      className="dash-vehicle-img"
+                    />
+                    <div className="dash-vehicle-info">
+                      <p className="dash-vehicle-name">
+                        {v.marque} {v.modele}
+                      </p>
+                      <p className="dash-vehicle-meta">
+                        {v.annee} • {v.couleur} • {v.carburant}
+                      </p>
+                    </div>
+                    <span className="dash-vehicle-price">
+                      {formatPrice(v.prix)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </>
       )}
 
-      {/* Bottom Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Recent Sales */}
-        <div className="bg-white rounded-xl border border-gray-100 p-4">
-          <div className="flex items-center justify-between mb-3">
-            <div>
-              <h3 className="text-sm font-semibold text-gray-800">Dernières ventes</h3>
-              <p className="text-[10px] text-gray-400 mt-0.5">Transactions récentes</p>
-            </div>
-            <ShoppingCart sx={{ fontSize: 18, color: '#9e9e9e' }} />
+      {/* ═══════════════════════════════════════ */}
+      {/* COMMERCIAL : Ventes + Clients           */}
+      {/* ═══════════════════════════════════════ */}
+      {role === ROLES.COMMERCIAL && (
+        <>
+          <div className="dash-stats-grid">
+            <StatCard
+              title="Mes ventes"
+              value={mockSales.filter((s) => s.vendeurId === user.id).length}
+              icon={<ShoppingCart fontSize="small" />}
+              color="#9c27b0"
+              subtitle="Ce mois"
+              trend="up"
+            />
+            <StatCard
+              title="Véhicules dispo"
+              value={mockStats.vehiculesDisponibles}
+              icon={<DirectionsCar fontSize="small" />}
+              color="#1976D2"
+              subtitle={`${mockStats.totalVehicules} total`}
+            />
+            <StatCard
+              title="Mes clients"
+              value={mockStats.totalClients}
+              icon={<People fontSize="small" />}
+              color="#ff9800"
+              subtitle="Clients actifs"
+            />
+            <StatCard
+              title="En attente"
+              value={mockStats.ventesEnCours}
+              icon={<HourglassEmpty fontSize="small" />}
+              color="#f44336"
+              subtitle="Paiements en cours"
+            />
           </div>
-          <div className="space-y-2">
-            {recentSales.map((sale) => (
-              <div
-                key={sale.id}
-                className="flex items-center justify-between p-2.5 rounded-lg bg-gray-50/80 hover:bg-gray-100/80 transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center
-                    ${sale.paiement.statut === 'payé' ? 'bg-green-100' : 'bg-orange-100'}`}>
-                    {sale.paiement.statut === 'payé' ? (
-                      <CheckCircle sx={{ fontSize: 16, color: '#4caf50' }} />
-                    ) : (
-                      <HourglassEmpty sx={{ fontSize: 16, color: '#ff9800' }} />
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium text-gray-700">{sale.vehicleName}</p>
-                    <p className="text-[10px] text-gray-400">{sale.clientName} • {sale.date}</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className="text-xs font-bold text-gray-800">{formatPrice(sale.montant)}</p>
-                  <p className={`text-[10px] font-medium
-                    ${sale.paiement.statut === 'payé' ? 'text-green-500' : 'text-orange-500'}`}>
-                    {sale.paiement.statut === 'payé' ? 'Payé' : 'En attente'}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Available Vehicles */}
-        <div className="bg-white rounded-xl border border-gray-100 p-4">
-          <div className="flex items-center justify-between mb-3">
-            <div>
-              <h3 className="text-sm font-semibold text-gray-800">Véhicules disponibles</h3>
-              <p className="text-[10px] text-gray-400 mt-0.5">{mockStats.vehiculesDisponibles} en stock</p>
-            </div>
-            <DirectionsCar sx={{ fontSize: 18, color: '#9e9e9e' }} />
-          </div>
-          <div className="space-y-2">
-            {recentVehicles.map((v) => (
-              <div
-                key={v.id}
-                className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <img
-                  src={v.image}
-                  alt={v.modele}
-                  className="w-14 h-10 rounded-lg object-cover"
-                />
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-gray-700 truncate">
-                    {v.marque} {v.modele}
-                  </p>
-                  <p className="text-[10px] text-gray-400">{v.annee} • {v.couleur} • {v.carburant}</p>
-                </div>
-                <p className="text-xs font-bold text-[#1976D2] whitespace-nowrap">
-                  {formatPrice(v.prix)}
+          <div className="dash-card">
+            <h3 className="dash-card-title" style={{ marginBottom: '0.75rem' }}>
+              Mes performances
+            </h3>
+            <div className="dash-kpi-grid">
+              <div className="dash-kpi-item dash-kpi-blue">
+                <p className="dash-kpi-value">
+                  {mockSales.filter((s) => s.vendeurId === user.id).length}
                 </p>
+                <p className="dash-kpi-label">Ventes réalisées</p>
               </div>
-            ))}
+              <div className="dash-kpi-item dash-kpi-green">
+                <p className="dash-kpi-value">
+                  {formatPrice(
+                    mockSales
+                      .filter((s) => s.vendeurId === user.id)
+                      .reduce((sum, s) => sum + s.montant, 0)
+                  )}
+                </p>
+                <p className="dash-kpi-label">CA généré</p>
+              </div>
+              <div className="dash-kpi-item dash-kpi-purple">
+                <p className="dash-kpi-value">95%</p>
+                <p className="dash-kpi-label">Taux conversion</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Quick Stats for Employee */}
-      {!showReports && (
-        <div className="bg-white rounded-xl border border-gray-100 p-4">
-          <h3 className="text-sm font-semibold text-gray-800 mb-3">Mes performances</h3>
-          <div className="grid grid-cols-3 gap-3">
-            <div className="text-center p-3 bg-blue-50/50 rounded-lg">
-              <p className="text-xl font-bold text-[#1976D2]">12</p>
-              <p className="text-[10px] text-gray-500 mt-1">Ventes ce mois</p>
+          <div className="dash-content-grid">
+            <div className="dash-card">
+              <div className="dash-card-header">
+                <div>
+                  <h3 className="dash-card-title">Dernières ventes</h3>
+                  <p className="dash-card-subtitle">Mes transactions</p>
+                </div>
+              </div>
+              <div className="dash-list">
+                {recentSales.map((sale) => (
+                  <div key={sale.id} className="dash-sale-item">
+                    <div className="dash-sale-left">
+                      <div className={`dash-sale-status-icon ${
+                        sale.paiement.statut === 'payé'
+                          ? 'dash-sale-status-paid'
+                          : 'dash-sale-status-pending'
+                      }`}>
+                        {sale.paiement.statut === 'payé' ? (
+                          <CheckCircle sx={{ fontSize: 16, color: '#4caf50' }} />
+                        ) : (
+                          <HourglassEmpty sx={{ fontSize: 16, color: '#ff9800' }} />
+                        )}
+                      </div>
+                      <div>
+                        <p className="dash-sale-name">{sale.vehicleName}</p>
+                        <p className="dash-sale-meta">{sale.clientName} • {sale.date}</p>
+                      </div>
+                    </div>
+                    <div className="dash-sale-right">
+                      <p className="dash-sale-amount">{formatPrice(sale.montant)}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="text-center p-3 bg-green-50/50 rounded-lg">
-              <p className="text-xl font-bold text-green-600">8</p>
-              <p className="text-[10px] text-gray-500 mt-1">Clients actifs</p>
-            </div>
-            <div className="text-center p-3 bg-purple-50/50 rounded-lg">
-              <p className="text-xl font-bold text-purple-600">95%</p>
-              <p className="text-[10px] text-gray-500 mt-1">Taux réussite</p>
+
+            <div className="dash-card">
+              <div className="dash-card-header">
+                <div>
+                  <h3 className="dash-card-title">Véhicules disponibles</h3>
+                  <p className="dash-card-subtitle">À proposer aux clients</p>
+                </div>
+              </div>
+              <div className="dash-list">
+                {recentVehicles.map((v) => (
+                  <div key={v.id} className="dash-vehicle-item">
+                    <img src={v.image} alt={v.modele} className="dash-vehicle-img" />
+                    <div className="dash-vehicle-info">
+                      <p className="dash-vehicle-name">{v.marque} {v.modele}</p>
+                      <p className="dash-vehicle-meta">{v.annee} • {v.couleur}</p>
+                    </div>
+                    <span className="dash-vehicle-price">{formatPrice(v.prix)}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </>
+      )}
+
+      {/* ═══════════════════════════════════════ */}
+      {/* TECHNICIEN : Interventions               */}
+      {/* ═══════════════════════════════════════ */}
+      {role === ROLES.TECHNICIEN && (
+        <>
+          <div className="dash-stats-grid">
+            <StatCard
+              title="Interventions"
+              value={mockStats.totalInterventions}
+              icon={<Build fontSize="small" />}
+              color="#7B1FA2"
+              subtitle={`${mockStats.interventionsEnCours} en cours`}
+            />
+            <StatCard
+              title="Réparations"
+              value={mockStats.reparationsEnCours}
+              icon={<Build fontSize="small" />}
+              color="#f44336"
+              subtitle="En cours"
+            />
+            <StatCard
+              title="Révisions"
+              value={mockStats.revisionsplanifiees}
+              icon={<DirectionsCar fontSize="small" />}
+              color="#1976D2"
+              subtitle="Planifiées"
+            />
+            <StatCard
+              title="Terminées"
+              value={mockStats.interventionsTerminees}
+              icon={<CheckCircle fontSize="small" />}
+              color="#4caf50"
+              subtitle="Ce mois"
+              trend="up"
+            />
+          </div>
+
+          <div className="dash-card">
+            <h3 className="dash-card-title" style={{ marginBottom: '0.75rem' }}>
+              Mes indicateurs
+            </h3>
+            <div className="dash-kpi-grid">
+              <div className="dash-kpi-item dash-kpi-blue">
+                <p className="dash-kpi-value">{mockStats.totalInterventions}</p>
+                <p className="dash-kpi-label">Total interventions</p>
+              </div>
+              <div className="dash-kpi-item dash-kpi-green">
+                <p className="dash-kpi-value">{mockStats.tempsMoyenIntervention}</p>
+                <p className="dash-kpi-label">Temps moyen</p>
+              </div>
+              <div className="dash-kpi-item dash-kpi-purple">
+                <p className="dash-kpi-value">96%</p>
+                <p className="dash-kpi-label">Taux réussite</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="dash-card">
+            <div className="dash-card-header">
+              <div>
+                <h3 className="dash-card-title">Interventions récentes</h3>
+                <p className="dash-card-subtitle">Mes tâches</p>
+              </div>
+            </div>
+            <div className="dash-list">
+              {mockInterventions.slice(0, 4).map((inter) => (
+                <div key={inter.id} className="dash-sale-item">
+                  <div className="dash-sale-left">
+                    <div className={`dash-sale-status-icon ${
+                      inter.statut === 'terminee'
+                        ? 'dash-sale-status-paid'
+                        : 'dash-sale-status-pending'
+                    }`}>
+                      {inter.statut === 'terminee' ? (
+                        <CheckCircle sx={{ fontSize: 16, color: '#4caf50' }} />
+                      ) : (
+                        <Build sx={{ fontSize: 16, color: '#ff9800' }} />
+                      )}
+                    </div>
+                    <div>
+                      <p className="dash-sale-name">{inter.vehicleName}</p>
+                      <p className="dash-sale-meta">
+                        {inter.type} • {inter.dateDebut}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="dash-sale-right">
+                    <p className={`dash-sale-payment ${
+                      inter.statut === 'terminee'
+                        ? 'dash-sale-payment-paid'
+                        : 'dash-sale-payment-pending'
+                    }`}>
+                      {inter.statut === 'terminee' ? 'Terminée' : 'En cours'}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* ═══════════════════════════════════════ */}
+      {/* GESTIONNAIRE STOCK : Pièces + Commandes  */}
+      {/* ═══════════════════════════════════════ */}
+      {role === ROLES.GESTIONNAIRE_STOCK && (
+        <>
+          <div className="dash-stats-grid">
+            <StatCard
+              title="Pièces en stock"
+              value={mockStats.totalPieces}
+              icon={<Inventory fontSize="small" />}
+              color="#00796B"
+              subtitle="Références"
+            />
+            <StatCard
+              title="Stock critique"
+              value={mockStats.piecesStockCritique}
+              icon={<Warning fontSize="small" />}
+              color="#f44336"
+              subtitle="Alerte !"
+              trend="down"
+            />
+            <StatCard
+              title="Commandes"
+              value={mockStats.commandesEnCours}
+              icon={<ShoppingCart fontSize="small" />}
+              color="#ff9800"
+              subtitle="En cours"
+            />
+            <StatCard
+              title="Fournisseurs"
+              value={mockStats.totalFournisseurs}
+              icon={<People fontSize="small" />}
+              color="#1976D2"
+              subtitle="Actifs"
+            />
+          </div>
+
+          <div className="dash-card">
+            <h3 className="dash-card-title" style={{ marginBottom: '0.75rem' }}>
+              Alertes stock
+            </h3>
+            <div className="dash-list">
+              {mockParts
+                .filter((p) => p.statut === 'stock_critique')
+                .map((part) => (
+                  <div key={part.id} className="dash-sale-item">
+                    <div className="dash-sale-left">
+                      <div className="dash-sale-status-icon dash-sale-status-pending">
+                        <Warning sx={{ fontSize: 16, color: '#f44336' }} />
+                      </div>
+                      <div>
+                        <p className="dash-sale-name">{part.nom}</p>
+                        <p className="dash-sale-meta">
+                          Réf: {part.reference} • {part.emplacement}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="dash-sale-right">
+                      <p className="dash-sale-amount">{part.stock} restant(s)</p>
+                      <p className="dash-sale-payment dash-sale-payment-pending">
+                        Min: {part.stockMin}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          <div className="dash-card">
+            <div className="dash-card-header">
+              <div>
+                <h3 className="dash-card-title">Commandes récentes</h3>
+                <p className="dash-card-subtitle">Suivi fournisseurs</p>
+              </div>
+            </div>
+            <div className="dash-list">
+              {mockOrders.slice(0, 4).map((order) => (
+                <div key={order.id} className="dash-sale-item">
+                  <div className="dash-sale-left">
+                    <div className={`dash-sale-status-icon ${
+                      order.statut === 'livree'
+                        ? 'dash-sale-status-paid'
+                        : 'dash-sale-status-pending'
+                    }`}>
+                      {order.statut === 'livree' ? (
+                        <CheckCircle sx={{ fontSize: 16, color: '#4caf50' }} />
+                      ) : (
+                        <HourglassEmpty sx={{ fontSize: 16, color: '#ff9800' }} />
+                      )}
+                    </div>
+                    <div>
+                      <p className="dash-sale-name">{order.numero}</p>
+                      <p className="dash-sale-meta">
+                        {order.fournisseurName} • {order.dateCommande}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="dash-sale-right">
+                    <p className="dash-sale-amount">{formatPrice(order.montantTotal)}</p>
+                    <p className={`dash-sale-payment ${
+                      order.statut === 'livree'
+                        ? 'dash-sale-payment-paid'
+                        : 'dash-sale-payment-pending'
+                    }`}>
+                      {order.statut === 'livree'
+                        ? 'Livrée'
+                        : order.statut === 'en_cours'
+                        ? 'En cours'
+                        : 'Confirmée'}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* ═══════════════════════════════════════ */}
+      {/* AGENT CLIENT : Tickets + Clients         */}
+      {/* ═══════════════════════════════════════ */}
+      {role === ROLES.AGENT_CLIENT && (
+        <>
+          <div className="dash-stats-grid">
+            <StatCard
+              title="Tickets"
+              value={mockStats.ticketsTotal}
+              icon={<SupportAgent fontSize="small" />}
+              color="#388e3c"
+              subtitle={`${mockStats.ticketsEnCours} en cours`}
+            />
+            <StatCard
+              title="Urgents"
+              value={mockStats.ticketsUrgents}
+              icon={<Warning fontSize="small" />}
+              color="#f44336"
+              subtitle="À traiter"
+              trend="down"
+            />
+            <StatCard
+              title="En attente"
+              value={mockStats.ticketsEnAttente}
+              icon={<HourglassEmpty fontSize="small" />}
+              color="#ff9800"
+              subtitle="Non assignés"
+            />
+            <StatCard
+              title="Clients actifs"
+              value={mockClients.filter((c) => c.status === 'actif').length}
+              icon={<People fontSize="small" />}
+              color="#1976D2"
+              subtitle="Total"
+            />
+          </div>
+
+          <div className="dash-card">
+            <div className="dash-card-header">
+              <div>
+                <h3 className="dash-card-title">Tickets récents</h3>
+                <p className="dash-card-subtitle">Demandes clients</p>
+              </div>
+            </div>
+            <div className="dash-list">
+              {mockReceptions.slice(0, 4).map((ticket) => (
+                <div key={ticket.id} className="dash-sale-item">
+                  <div className="dash-sale-left">
+                    <div className={`dash-sale-status-icon ${
+                      ticket.statut === 'resolu'
+                        ? 'dash-sale-status-paid'
+                        : 'dash-sale-status-pending'
+                    }`}>
+                      {ticket.statut === 'resolu' ? (
+                        <CheckCircle sx={{ fontSize: 16, color: '#4caf50' }} />
+                      ) : ticket.priorite === 'urgente' ? (
+                        <Warning sx={{ fontSize: 16, color: '#f44336' }} />
+                      ) : (
+                        <SupportAgent sx={{ fontSize: 16, color: '#ff9800' }} />
+                      )}
+                    </div>
+                    <div>
+                      <p className="dash-sale-name">{ticket.sujet}</p>
+                      <p className="dash-sale-meta">
+                        {ticket.clientName} • {ticket.type}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="dash-sale-right">
+                    <p className={`dash-sale-payment ${
+                      ticket.statut === 'resolu'
+                        ? 'dash-sale-payment-paid'
+                        : 'dash-sale-payment-pending'
+                    }`}>
+                      {ticket.statut === 'resolu'
+                        ? 'Résolu'
+                        : ticket.statut === 'en_cours'
+                        ? 'En cours'
+                        : 'En attente'}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
