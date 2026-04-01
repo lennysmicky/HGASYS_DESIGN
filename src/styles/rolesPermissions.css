@@ -1,0 +1,478 @@
+/* ================================================
+   HGASYS - Roles & Permissions Page
+   Gestion des rôles et droits d'accès
+   ================================================ */
+
+/* ===== PAGE ===== */
+.rp-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ===== HEADER ===== */
+.rp-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .rp-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.rp-header-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.rp-header-subtitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0.125rem 0 0;
+}
+
+/* ===== STATS ===== */
+.rp-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .rp-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .rp-stats-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.rp-stat-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border: none;
+  border-radius: 16px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.rp-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+}
+
+.rp-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rp-stat-label {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.rp-stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0.125rem 0 0;
+}
+
+.rp-stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.rp-stat-card:hover .rp-stat-icon {
+  transform: scale(1.05);
+}
+
+/* ===== ROLES GRID ===== */
+.rp-roles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .rp-roles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .rp-roles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== ROLE CARD ===== */
+.rp-role-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.rp-role-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.rp-role-bar {
+  height: 4px;
+}
+
+.rp-role-body {
+  padding: 0.75rem;
+}
+
+/* Role header */
+.rp-role-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.625rem;
+}
+
+.rp-role-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.rp-role-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rp-role-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.rp-role-code {
+  font-size: 0.5625rem;
+  color: #94a3b8;
+  margin: 0;
+  font-family: monospace;
+}
+
+.rp-role-user-count {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  background: #f1f5f9;
+  border-radius: 20px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* Services access */
+.rp-role-services {
+  margin-bottom: 0.625rem;
+}
+
+.rp-role-services-title {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.375rem;
+}
+
+.rp-services-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.rp-service-tag {
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-size: 0.5625rem;
+  font-weight: 600;
+}
+
+.rp-service-tag-active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.rp-service-tag-inactive {
+  background: #f1f5f9;
+  color: #cbd5e1;
+  text-decoration: line-through;
+}
+
+/* Permissions */
+.rp-role-permissions {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 0.625rem;
+}
+
+.rp-role-permissions-title {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.375rem;
+}
+
+.rp-perms-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.25rem;
+}
+
+.rp-perm-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.5625rem;
+  padding: 0.125rem 0;
+}
+
+.rp-perm-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.rp-perm-dot-active {
+  background: #22c55e;
+}
+
+.rp-perm-dot-inactive {
+  background: #e2e8f0;
+}
+
+.rp-perm-label {
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rp-perm-label-inactive {
+  color: #cbd5e1;
+}
+
+/* Users in role */
+.rp-role-users {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 0.625rem;
+  margin-top: 0.625rem;
+}
+
+.rp-role-users-title {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.375rem;
+}
+
+.rp-users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rp-user-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.375rem;
+  background: #f8fafc;
+  border-radius: 6px;
+}
+
+.rp-user-name {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rp-user-email {
+  font-size: 0.5625rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.rp-user-status {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.rp-user-status-actif {
+  background: #22c55e;
+}
+
+.rp-user-status-inactif {
+  background: #f87171;
+}
+
+.rp-users-empty {
+  font-size: 0.625rem;
+  color: #cbd5e1;
+  text-align: center;
+  padding: 0.375rem;
+}
+
+/* ===== EXPAND BUTTON ===== */
+.rp-expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 100%;
+  padding: 0.375rem;
+  margin-top: 0.5rem;
+  background: none;
+  border: 1px dashed #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.5625rem;
+  font-family: inherit;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.rp-expand-btn:hover {
+  border-color: #1976D2;
+  color: #1976D2;
+  background: #eff6ff;
+}
+
+/* ===== LEGEND ===== */
+.rp-legend {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 0.75rem;
+}
+
+.rp-legend-title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem;
+}
+
+.rp-legend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.375rem;
+}
+
+@media (min-width: 768px) {
+  .rp-legend-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .rp-legend-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+.rp-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.5rem;
+  background: #f8fafc;
+  border-radius: 6px;
+}
+
+.rp-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.rp-legend-label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.rp-legend-desc {
+  font-size: 0.5625rem;
+  color: #94a3b8;
+}
+
+/* ===== INFO BANNER ===== */
+.rp-info-banner {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.rp-info-icon {
+  width: 36px;
+  height: 36px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.rp-info-text {
+  font-size: 0.6875rem;
+  color: #1e40af;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.rp-info-bold {
+  font-weight: 700;
+}

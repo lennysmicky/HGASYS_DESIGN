@@ -1,0 +1,457 @@
+/* ================================================
+   HGASYS - Vehicle Stock Page
+   Stock véhicules - Disponibilité et alertes
+   ================================================ */
+
+/* ===== PAGE ===== */
+.vs-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ===== HEADER ===== */
+.vs-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .vs-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.vs-header-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.vs-header-subtitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0.125rem 0 0;
+}
+
+/* ===== STATS ===== */
+.vs-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .vs-stats-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.vs-stat-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border: none;
+  border-radius: 16px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vs-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+}
+
+.vs-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vs-stat-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.vs-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.125rem 0 0;
+}
+
+.vs-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.vs-stat-card:hover .vs-stat-icon {
+  transform: scale(1.05);
+}
+
+/* ===== CHARTS SECTION ===== */
+.vs-charts-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .vs-charts-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.vs-chart-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 1rem;
+}
+
+.vs-chart-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.75rem;
+}
+
+/* ===== FILTERS ===== */
+.vs-filters {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 0.75rem;
+}
+
+.vs-filters-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .vs-filters-row {
+    flex-direction: row;
+  }
+}
+
+.vs-search-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.vs-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #cbd5e1;
+}
+
+.vs-search-input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.25rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  color: #1e293b;
+}
+
+.vs-search-input::placeholder {
+  color: #cbd5e1;
+}
+
+.vs-search-input:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+.vs-filter-selects {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.vs-select {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  background: white;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vs-select:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+/* ===== TABLE ===== */
+.vs-table-wrapper {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  overflow-x: auto;
+}
+
+.vs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.vs-table thead {
+  background: #f8fafc;
+}
+
+.vs-table th {
+  padding: 0.625rem 0.75rem;
+  text-align: left;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #f1f5f9;
+  white-space: nowrap;
+}
+
+.vs-table td {
+  padding: 0.625rem 0.75rem;
+  color: #374151;
+  border-bottom: 1px solid #f8fafc;
+  vertical-align: middle;
+}
+
+.vs-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.vs-table tbody tr:hover {
+  background: #fafbfc;
+}
+
+.vs-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Vehicle cell */
+.vs-vehicle-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.vs-vehicle-img {
+  width: 48px;
+  height: 36px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.vs-vehicle-name {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.vs-vehicle-vin {
+  font-size: 0.5625rem;
+  color: #94a3b8;
+  font-family: monospace;
+  margin: 0;
+}
+
+.vs-vehicle-year {
+  font-size: 0.6875rem;
+  color: #64748b;
+}
+
+.vs-vehicle-color-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+
+.vs-vehicle-color {
+  font-size: 0.6875rem;
+  color: #64748b;
+}
+
+.vs-vehicle-km {
+  font-size: 0.6875rem;
+  color: #64748b;
+}
+
+.vs-vehicle-price {
+  font-weight: 700;
+  color: #1976D2;
+  white-space: nowrap;
+}
+
+/* Status badge */
+.vs-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.vs-status-disponible {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.vs-status-vendu {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.vs-status-reserve {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.vs-status-en_revision {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+/* Carburant / Transmission badges */
+.vs-badge {
+  display: inline-block;
+  padding: 0.0625rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.5625rem;
+  font-weight: 600;
+}
+
+.vs-badge-essence {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.vs-badge-diesel {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.vs-badge-auto {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.vs-badge-manuelle {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* ===== EMPTY STATE ===== */
+.vs-empty {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 3rem;
+  text-align: center;
+}
+
+.vs-empty-text {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin: 0.75rem 0 0;
+}
+
+/* ===== ALERT BAR ===== */
+.vs-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+}
+
+.vs-alert-warning {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  color: #92400e;
+}
+
+.vs-alert-icon {
+  flex-shrink: 0;
+}
+
+.vs-alert-text {
+  margin: 0;
+  flex: 1;
+}
+
+.vs-alert-bold {
+  font-weight: 700;
+}
+
+/* ===== RESPONSIVE TABLE → CARDS ===== */
+@media (max-width: 767px) {
+  .vs-table thead {
+    display: none;
+  }
+
+  .vs-table,
+  .vs-table tbody,
+  .vs-table tr,
+  .vs-table td {
+    display: block;
+  }
+
+  .vs-table tr {
+    background: white;
+    border: 1px solid #f1f5f9;
+    border-radius: 10px;
+    padding: 0.625rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .vs-table td {
+    padding: 0.25rem 0;
+    border: none;
+    font-size: 0.6875rem;
+  }
+
+  .vs-table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: #94a3b8;
+    font-size: 0.5625rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.125rem;
+  }
+}

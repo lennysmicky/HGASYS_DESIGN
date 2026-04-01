@@ -20,6 +20,11 @@ import Sales from '../pages/commercial/sales/Sales';
 
 // Clientèle (existant)
 import Clients from '../pages/clientelle/clients/Clients';
+import HrDossiers from '../pages/administration/hrDossiers/HrDossiers';
+import RolesPermissions from '../pages/administration/rolesPermissions/RolesPermissions';
+import Quotes from '../pages/commercial/quotes/Quotes';
+import VehiculeStock from '../pages/commercial/vehiculeStock/VehiculeStock';
+import Reception from '../pages/clientelle/reception/Reception';
 
 // ═══════════════════════════════════════════
 // PAGES PLACEHOLDER (temporaires)
@@ -158,12 +163,12 @@ const AppRoutes = () => {
         } />
         <Route path="/administration/hr-dossiers" element={
           <ProtectedRoute page="hrDossiers">
-            <Placeholder title="Dossiers RH" />
+            <HrDossiers />
           </ProtectedRoute>
         } />
         <Route path="/administration/roles" element={
           <ProtectedRoute page="rolesPermissions">
-            <Placeholder title="Rôles & Permissions" />
+            <RolesPermissions/>
           </ProtectedRoute>
         } />
 
@@ -175,7 +180,7 @@ const AppRoutes = () => {
         } />
         <Route path="/commercial/quotes" element={
           <ProtectedRoute page="quotes">
-            <Placeholder title="Devis" />
+            <Quotes/>
           </ProtectedRoute>
         } />
         <Route path="/commercial/vehicles" element={
@@ -185,14 +190,14 @@ const AppRoutes = () => {
         } />
         <Route path="/commercial/vehicle-stock" element={
           <ProtectedRoute page="vehicleStock">
-            <Placeholder title="Stock Véhicules" />
+            <VehiculeStock />
           </ProtectedRoute>
         } />
 
         {/* ─── Service Clientèle ─── */}
         <Route path="/clientele/reception" element={
           <ProtectedRoute page="reception">
-            <Placeholder title="Réception" />
+            <Reception />
           </ProtectedRoute>
         } />
         <Route path="/clientele/clients" element={

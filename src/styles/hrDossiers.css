@@ -1,0 +1,672 @@
+/* ================================================
+   HGASYS - HR Dossiers Page
+   Gestion des dossiers RH (contrats, CV, docs)
+   ================================================ */
+
+/* ===== PAGE ===== */
+.hrd-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ===== HEADER ===== */
+.hrd-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .hrd-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.hrd-header-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.hrd-header-subtitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0.125rem 0 0;
+}
+
+.hrd-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background: #1976D2;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.hrd-add-btn:hover {
+  background: #1565C0;
+}
+
+/* ===== STATS ===== */
+.hrd-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .hrd-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.hrd-stat-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border: none;
+  border-radius: 16px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hrd-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+}
+
+.hrd-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hrd-stat-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.hrd-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.125rem 0 0;
+}
+
+.hrd-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.hrd-stat-card:hover .hrd-stat-icon {
+  transform: scale(1.05);
+}
+
+/* ===== FILTERS ===== */
+.hrd-filters {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 0.75rem;
+}
+
+.hrd-filters-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .hrd-filters-row {
+    flex-direction: row;
+  }
+}
+
+.hrd-search-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.hrd-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #cbd5e1;
+}
+
+.hrd-search-input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.25rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  color: #1e293b;
+}
+
+.hrd-search-input::placeholder {
+  color: #cbd5e1;
+}
+
+.hrd-search-input:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+.hrd-filter-selects {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hrd-select {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  background: white;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hrd-select:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+/* ===== GRID ===== */
+.hrd-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .hrd-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hrd-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
+  .hrd-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===== CARD ===== */
+.hrd-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.hrd-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.hrd-card-body {
+  padding: 0.75rem;
+}
+
+.hrd-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.hrd-card-left {
+  display: flex;
+  gap: 0.625rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.hrd-doc-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hrd-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hrd-card-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hrd-card-type {
+  display: inline-block;
+  padding: 0.0625rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  margin-top: 0.125rem;
+}
+
+.hrd-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hrd-action-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.hrd-action-view:hover {
+  background: #eff6ff;
+  color: #1976D2;
+}
+
+.hrd-action-edit:hover {
+  background: #fff7ed;
+  color: #f97316;
+}
+
+.hrd-action-delete:hover {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.hrd-action-download:hover {
+  background: #f0fdf4;
+  color: #22c55e;
+}
+
+/* Card employee row */
+.hrd-card-employee {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.hrd-card-employee-name {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.hrd-card-employee-poste {
+  font-size: 0.5625rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Card footer */
+.hrd-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.hrd-card-date {
+  font-size: 0.625rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.hrd-card-size {
+  font-size: 0.625rem;
+  color: #94a3b8;
+}
+
+.hrd-card-expiration {
+  font-size: 0.5625rem;
+  padding: 0.0625rem 0.3rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.hrd-card-expiration-active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.hrd-card-expiration-warning {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.hrd-card-expiration-expired {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ===== STATUS BADGE ===== */
+.hrd-status-badge {
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+.hrd-status-actif {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.hrd-status-archive {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* ===== EMPTY STATE ===== */
+.hrd-empty {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 3rem;
+  text-align: center;
+}
+
+.hrd-empty-text {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin: 0.75rem 0 0;
+}
+
+/* ===== MODAL FORM ===== */
+.hrd-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hrd-form-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.hrd-form-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  color: #1e293b;
+}
+
+.hrd-form-input:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+.hrd-form-select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1e293b;
+}
+
+.hrd-form-select:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+.hrd-form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+/* ===== MODAL BUTTONS ===== */
+.hrd-modal-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hrd-modal-btn-cancel {
+  color: #64748b;
+  background: none;
+}
+
+.hrd-modal-btn-cancel:hover {
+  background: #f1f5f9;
+}
+
+.hrd-modal-btn-primary {
+  background: #1976D2;
+  color: white;
+}
+
+.hrd-modal-btn-primary:hover {
+  background: #1565C0;
+}
+
+.hrd-modal-btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+.hrd-modal-btn-danger:hover {
+  background: #dc2626;
+}
+
+/* ===== VIEW MODAL ===== */
+.hrd-view-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hrd-view-doc-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.hrd-view-doc-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hrd-view-doc-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.hrd-view-doc-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.hrd-view-doc-meta span {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+}
+
+.hrd-view-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .hrd-view-fields {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.hrd-view-field {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.hrd-view-field-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hrd-view-field-label {
+  font-size: 0.625rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.hrd-view-field-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.hrd-view-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: #1976D2;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.hrd-view-download-btn:hover {
+  background: #1565C0;
+}
+
+/* ===== DELETE CONFIRM ===== */
+.hrd-delete-modal {
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.hrd-delete-icon {
+  width: 48px;
+  height: 48px;
+  background: #fee2e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.hrd-delete-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0.75rem 0 0;
+}
+
+.hrd-delete-text {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0.25rem 0 0;
+}
+
+.hrd-delete-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
