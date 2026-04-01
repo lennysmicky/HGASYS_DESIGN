@@ -1939,7 +1939,7 @@ export const mockHrDossiers = [
 export const mockSettings = {
   entreprise: {
     nom: 'HGASYS',
-    nomComplet: 'Honda Gestion Automobile System',
+    nomComplet: 'Hyundai Gestion Automobile System',
     adresse: '123 Boulevard Mohamed V, Alger, Algérie',
     telephone: '021 12 34 56',
     email: 'contact@hgasys.com',

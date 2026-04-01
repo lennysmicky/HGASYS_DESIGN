@@ -1,0 +1,307 @@
+/* ================================================
+   HGASYS - Parts Stock Page
+   Magasin - Stock pièces + alertes critiques
+   ================================================ */
+
+.psk-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.psk-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .psk-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.psk-header-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.psk-header-subtitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0.125rem 0 0;
+}
+
+/* Stats */
+.psk-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .psk-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.psk-stat-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border: none;
+  border-radius: 16px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.psk-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+}
+
+.psk-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.psk-stat-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.psk-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.125rem 0 0;
+}
+
+.psk-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.psk-stat-card:hover .psk-stat-icon {
+  transform: scale(1.05);
+}
+
+/* Alert */
+.psk-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.psk-alert-bold {
+  font-weight: 700;
+}
+
+/* Charts */
+.psk-charts-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .psk-charts-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.psk-chart-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 1rem;
+}
+
+.psk-chart-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.75rem;
+}
+
+/* Critical items list */
+.psk-critical-section {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 1rem;
+}
+
+.psk-critical-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #ef4444;
+  margin: 0 0 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.psk-critical-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .psk-critical-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.psk-critical-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #fef2f2;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+}
+
+.psk-critical-icon {
+  width: 36px;
+  height: 36px;
+  background: #fee2e2;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.psk-critical-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.psk-critical-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #991b1b;
+  margin: 0;
+}
+
+.psk-critical-ref {
+  font-size: 0.5625rem;
+  color: #b91c1c;
+  font-family: monospace;
+  margin: 0;
+}
+
+.psk-critical-stock {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.psk-critical-stock-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ef4444;
+  margin: 0;
+}
+
+.psk-critical-stock-label {
+  font-size: 0.5rem;
+  color: #b91c1c;
+  margin: 0;
+}
+
+/* Stock overview table */
+.psk-overview {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 1rem;
+}
+
+.psk-overview-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.75rem;
+}
+
+.psk-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .psk-overview-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .psk-overview-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.psk-cat-card {
+  padding: 0.75rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.psk-cat-card:hover {
+  transform: translateY(-1px);
+}
+
+.psk-cat-count {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.psk-cat-name {
+  font-size: 0.625rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.psk-cat-stock {
+  font-size: 0.5625rem;
+  color: #94a3b8;
+  margin: 0.125rem 0 0;
+}
+
+/* Empty */
+.psk-empty {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 3rem;
+  text-align: center;
+}
+
+.psk-empty-text {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin: 0.75rem 0 0;
+}

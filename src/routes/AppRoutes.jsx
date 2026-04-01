@@ -25,6 +25,15 @@ import RolesPermissions from '../pages/administration/rolesPermissions/RolesPerm
 import Quotes from '../pages/commercial/quotes/Quotes';
 import VehiculeStock from '../pages/commercial/vehiculeStock/VehiculeStock';
 import Reception from '../pages/clientelle/reception/Reception';
+import Revisions from '../pages/technique/revisions/Revisions';
+import Repairs from '../pages/technique/repairs/Repairs';
+import Interventions from '../pages/technique/interventions/Interventions';
+import Techniciens from '../pages/technique/technicians/Technicians';
+import Parts from '../pages/magasin/parts/Parts';
+import PartsStock from '../pages/magasin/partsStock/PartsStock';
+import Orders from '../pages/magasin/orders/Orders';
+import Suppliers from '../pages/magasin/suppliers/Suppliers';
+import Settings from '../pages/settings/Settings';
 
 // ═══════════════════════════════════════════
 // PAGES PLACEHOLDER (temporaires)
@@ -168,7 +177,7 @@ const AppRoutes = () => {
         } />
         <Route path="/administration/roles" element={
           <ProtectedRoute page="rolesPermissions">
-            <RolesPermissions/>
+            <RolesPermissions />
           </ProtectedRoute>
         } />
 
@@ -180,7 +189,7 @@ const AppRoutes = () => {
         } />
         <Route path="/commercial/quotes" element={
           <ProtectedRoute page="quotes">
-            <Quotes/>
+            <Quotes />
           </ProtectedRoute>
         } />
         <Route path="/commercial/vehicles" element={
@@ -209,61 +218,51 @@ const AppRoutes = () => {
         {/* ─── Service Technique ─── */}
         <Route path="/technique/revisions" element={
           <ProtectedRoute page="revisions">
-            <Placeholder title="Révisions" />
+            <Revisions />
           </ProtectedRoute>
         } />
         <Route path="/technique/repairs" element={
           <ProtectedRoute page="repairs">
-            <Placeholder title="Réparations" />
+            <Repairs />
           </ProtectedRoute>
         } />
         <Route path="/technique/interventions" element={
           <ProtectedRoute page="interventions">
-            <Placeholder title="Interventions" />
+            <Interventions />
           </ProtectedRoute>
         } />
         <Route path="/technique/technicians" element={
           <ProtectedRoute page="technicians">
-            <Placeholder title="Techniciens" />
+            <Techniciens />
           </ProtectedRoute>
         } />
 
         {/* ─── Magasin & Pièces ─── */}
         <Route path="/magasin/parts" element={
           <ProtectedRoute page="parts">
-            <Placeholder title="Pièces détachées" />
+            <Parts />
           </ProtectedRoute>
         } />
         <Route path="/magasin/parts-stock" element={
           <ProtectedRoute page="partsStock">
-            <Placeholder title="Stock Pièces" />
+            <PartsStock />
           </ProtectedRoute>
         } />
         <Route path="/magasin/orders" element={
           <ProtectedRoute page="orders">
-            <Placeholder title="Commandes" />
+            <Orders />
           </ProtectedRoute>
         } />
         <Route path="/magasin/suppliers" element={
           <ProtectedRoute page="suppliers">
-            <Placeholder title="Fournisseurs" />
+            <Suppliers />
           </ProtectedRoute>
         } />
 
         {/* ─── Paramètres ─── */}
-        <Route path="/settings/system" element={
+        <Route path="/settings/*" element={
           <ProtectedRoute page="settings">
-            <Placeholder title="Système" />
-          </ProtectedRoute>
-        } />
-        <Route path="/settings/company" element={
-          <ProtectedRoute page="settings">
-            <Placeholder title="Entreprise" />
-          </ProtectedRoute>
-        } />
-        <Route path="/settings/notifications" element={
-          <ProtectedRoute page="settings">
-            <Placeholder title="Notifications" />
+            <Settings />
           </ProtectedRoute>
         } />
 

@@ -146,7 +146,7 @@ const RolesPermissions = () => {
 
           return (
             <div key={role.key} className="rp-role-card">
-              <div className="rp-role-bar" style={{ background: roleColor }} />
+              
               <div className="rp-role-body">
                 {/* Header */}
                 <div className="rp-role-header">

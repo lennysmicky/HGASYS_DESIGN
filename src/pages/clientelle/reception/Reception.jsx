@@ -295,7 +295,6 @@ const Reception = () => {
 
             return (
               <div key={ticket.id} className="rec-card">
-                <div className="rec-card-priority-bar" style={{ background: priorityConfig.color }} />
                 <div className="rec-card-body">
                   {/* Top */}
                   <div className="rec-card-top">
