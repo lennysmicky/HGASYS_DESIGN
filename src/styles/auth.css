@@ -777,3 +777,15 @@
   outline: 2px solid var(--auth-primary);
   outline-offset: 1px;
 }
+/* ===== DEMO ACCOUNTS - GRILLE 6 RÔLES ===== */
+@media (min-width: 481px) {
+  .auth-demo-accounts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-demo-accounts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

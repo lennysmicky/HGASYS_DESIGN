@@ -1,0 +1,658 @@
+/* ================================================
+   HGASYS - Clients Page
+   Gestion clientèle
+   ================================================ */
+
+/* ===== PAGE ===== */
+.clients-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ===== HEADER ===== */
+.cli-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .cli-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.cli-header-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.cli-header-subtitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0.125rem 0 0;
+}
+
+.cli-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background: #1976D2;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.cli-add-btn:hover {
+  background: #1565C0;
+}
+
+/* ===== STATS ===== */
+.cli-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.cli-stat-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.cli-stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cli-stat-label {
+  font-size: 0.625rem;
+  color: #94a3b8;
+  margin: 0.125rem 0 0;
+}
+
+/* ===== FILTERS ===== */
+.cli-filters {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 0.75rem;
+}
+
+.cli-filters-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .cli-filters-row {
+    flex-direction: row;
+  }
+}
+
+.cli-search-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.cli-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #cbd5e1;
+}
+
+.cli-search-input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.25rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  color: #1e293b;
+}
+
+.cli-search-input::placeholder {
+  color: #cbd5e1;
+}
+
+.cli-search-input:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+.cli-select {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  background: white;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cli-select:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+/* ===== CLIENT LIST ===== */
+.cli-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ===== CLIENT CARD ===== */
+.cli-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 1rem;
+  transition: all 0.2s ease;
+}
+
+.cli-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.cli-card-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Info */
+.cli-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cli-card-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cli-card-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cli-type-badge {
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.cli-type-particulier {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.cli-type-entreprise {
+  background: #f3e8ff;
+  color: #7c3aed;
+}
+
+.cli-card-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 1rem;
+  margin-top: 0.375rem;
+}
+
+.cli-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #94a3b8;
+}
+
+.cli-contact-text {
+  font-size: 0.6875rem;
+}
+
+/* Stats on card */
+.cli-card-stats {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .cli-card-stats {
+    display: flex;
+  }
+}
+
+.cli-card-stat {
+  text-align: center;
+}
+
+.cli-card-stat-value {
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cli-card-stat-label {
+  font-size: 0.5625rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Actions */
+.cli-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cli-card:hover .cli-card-actions {
+  opacity: 1;
+}
+
+.cli-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cli-action-view:hover {
+  background: #eff6ff;
+  color: #1976D2;
+}
+
+.cli-action-edit:hover {
+  background: #fff7ed;
+  color: #f97316;
+}
+
+.cli-action-delete:hover {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+/* ===== EMPTY ===== */
+.cli-empty {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 3rem;
+  text-align: center;
+}
+
+.cli-empty-text {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin: 0.75rem 0 0;
+}
+
+/* ===== FORM MODAL ===== */
+.cli-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cli-form-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.cli-form-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  color: #1e293b;
+}
+
+.cli-form-input:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+.cli-form-select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  background: white;
+  cursor: pointer;
+  color: #1e293b;
+}
+
+.cli-form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+/* ===== MODAL BUTTONS ===== */
+.cli-modal-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cli-modal-btn-cancel {
+  color: #64748b;
+  background: none;
+}
+
+.cli-modal-btn-cancel:hover {
+  background: #f1f5f9;
+}
+
+.cli-modal-btn-primary {
+  background: #1976D2;
+  color: white;
+}
+
+.cli-modal-btn-primary:hover {
+  background: #1565C0;
+}
+
+.cli-modal-btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+.cli-modal-btn-danger:hover {
+  background: #dc2626;
+}
+
+/* ===== VIEW MODAL ===== */
+.cli-view-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.cli-view-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.cli-view-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.cli-view-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.cli-view-field-label {
+  font-size: 0.625rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.cli-view-field-value {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+/* Historique achats */
+.cli-history-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.cli-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cli-history-item {
+  padding: 0.75rem;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+}
+
+.cli-history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cli-history-vehicle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.cli-history-meta {
+  font-size: 0.625rem;
+  color: #94a3b8;
+  margin: 0.125rem 0 0;
+}
+
+.cli-history-amount {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1976D2;
+  margin: 0;
+}
+
+.cli-payment-badge {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+}
+
+.cli-payment-paid {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.cli-payment-pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+/* Payment progress */
+.cli-payment-detail {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f9fafb;
+}
+
+.cli-payment-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.625rem;
+}
+
+.cli-payment-paid-text {
+  color: #94a3b8;
+}
+
+.cli-payment-rest-text {
+  color: #ef4444;
+  font-weight: 500;
+}
+
+.cli-payment-bar {
+  margin-top: 0.375rem;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.cli-payment-bar-fill {
+  height: 100%;
+  background: #1976D2;
+  border-radius: 999px;
+}
+
+/* Total box */
+.cli-total-box {
+  padding: 0.5rem;
+  background: rgba(25, 118, 210, 0.04);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.cli-total-label {
+  font-size: 0.625rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.cli-total-value {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1976D2;
+  margin: 0;
+}
+
+/* Empty purchases */
+.cli-history-empty {
+  padding: 1.5rem;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.cli-history-empty-text {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+  margin: 0.5rem 0 0;
+}
+
+/* ===== DELETE ===== */
+.cli-delete-modal {
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.cli-delete-icon {
+  width: 48px;
+  height: 48px;
+  background: #fee2e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.cli-delete-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0.75rem 0 0;
+}
+
+.cli-delete-text {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0.25rem 0 0;
+}
+
+.cli-delete-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+/* ================================================
+   CLIENTS - AJOUTS : Actions visibles mobile
+   ================================================ */
+
+@media (max-width: 767px) {
+  .cli-card-actions {
+    opacity: 1 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .cli-card-actions {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .cli-card:hover .cli-card-actions {
+    opacity: 1;
+  }
+}

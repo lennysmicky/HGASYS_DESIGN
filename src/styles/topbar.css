@@ -1,0 +1,268 @@
+/* ================================================
+   HGASYS - Topbar
+   Même style que l'original Tailwind
+   ================================================ */
+
+/* ===== VARIABLES ===== */
+:root {
+  --tb-height: 60px;
+  --tb-bg: #ffffff;
+  --tb-border: #e5e7eb;
+  --tb-text-primary: #1f2937;
+  --tb-text-secondary: #9ca3af;
+  --tb-text-muted: #6b7280;
+  --tb-hover-bg: #f3f4f6;
+  --tb-blue: #1976D2;
+  --tb-blue-light: rgba(25, 118, 210, 0.08);
+  --tb-red: #ef4444;
+  --tb-red-light: #fef2f2;
+  --tb-transition: all 0.2s ease;
+}
+
+/* ===== HEADER ===== */
+.topbar {
+  height: var(--tb-height);
+  background: var(--tb-bg);
+  border-bottom: 1px solid var(--tb-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+/* ===== LEFT SECTION ===== */
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.topbar-menu-btn {
+  display: none;
+  padding: 0.375rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: none;
+  color: #4b5563;
+  cursor: pointer;
+  transition: var(--tb-transition);
+}
+
+.topbar-menu-btn:hover {
+  background: var(--tb-hover-bg);
+}
+
+@media (max-width: 1023px) {
+  .topbar-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.topbar-welcome {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar-welcome-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--tb-text-primary);
+  margin: 0;
+}
+
+.topbar-welcome-date {
+  font-size: 0.6875rem;
+  color: var(--tb-text-secondary);
+  margin: 0;
+}
+
+/* ===== RIGHT SECTION ===== */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ===== NOTIFICATION BUTTON ===== */
+.topbar-notif-btn {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: none;
+  color: #6b7280;
+  cursor: pointer;
+  transition: var(--tb-transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-notif-btn:hover {
+  background: var(--tb-hover-bg);
+}
+
+/* ===== NOTIFICATION POPOVER ===== */
+.topbar-notif-header {
+  padding: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.topbar-notif-header p {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--tb-text-primary);
+  margin: 0;
+}
+
+.topbar-notif-list {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.topbar-notif-item {
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid #f9fafb;
+  cursor: pointer;
+  transition: var(--tb-transition);
+}
+
+.topbar-notif-item:hover {
+  background: #f9fafb;
+}
+
+.topbar-notif-item-unread {
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.topbar-notif-item-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.topbar-notif-dot {
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.topbar-notif-text {
+  font-size: 0.75rem;
+  color: #374151;
+  margin: 0;
+}
+
+.topbar-notif-date {
+  font-size: 0.625rem;
+  color: var(--tb-text-secondary);
+  margin: 0.125rem 0 0;
+}
+
+/* ===== PROFILE BUTTON ===== */
+.topbar-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: var(--tb-transition);
+}
+
+.topbar-profile-btn:hover {
+  background: var(--tb-hover-bg);
+}
+
+.topbar-profile-info {
+  display: none;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .topbar-profile-info {
+    display: block;
+  }
+}
+
+.topbar-profile-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+.topbar-profile-role {
+  font-size: 0.625rem;
+  margin: 0;
+}
+
+/* ===== PROFILE POPOVER ===== */
+.topbar-profile-header {
+  padding: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topbar-profile-header-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--tb-text-primary);
+}
+
+.topbar-profile-header-email {
+  font-size: 0.625rem;
+  color: var(--tb-text-secondary);
+  margin: 0;
+}
+
+.topbar-profile-menu {
+  padding: 0.25rem 0;
+}
+
+.topbar-profile-menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: var(--tb-transition);
+  font-family: inherit;
+}
+
+.topbar-profile-menu-item-default {
+  color: #4b5563;
+}
+
+.topbar-profile-menu-item-default:hover {
+  background: #f9fafb;
+}
+
+.topbar-profile-menu-item-danger {
+  color: var(--tb-red);
+}
+
+.topbar-profile-menu-item-danger:hover {
+  background: var(--tb-red-light);
+}
+
+/* ===== FOCUS VISIBLE ===== */
+.topbar-menu-btn:focus-visible,
+.topbar-notif-btn:focus-visible,
+.topbar-profile-btn:focus-visible,
+.topbar-profile-menu-item:focus-visible {
+  outline: 2px solid var(--tb-blue);
+  outline-offset: 2px;
+}
